@@ -1,0 +1,42 @@
+.caret-blink {
+  animation: fadeInOut 0.5s linear 1 forwards;
+  animation-iteration-count: infinite;
+}
+
+@keyframes fadeInOut {
+  0%   { opacity: 0; }
+  50%  { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+span.accent {
+    color: #FBDB93;
+    font-style: normal;
+}
+
+a {
+    color: #BE5B50;
+}
+
+a:hover {
+    color: #FBDB93;
+}
+
+li {
+    list-style-type: "> ";
+}
+
+hr {
+    border-color: #FBDB93;
+    border-top: 1px;
+}
+
+* {
+  font-variant-ligatures: none;
+}
+
+body {
+    background-color: #000000;
+    color: #BE5B50;
+    font-family: 'JetBrains Mono', monospace;
+}

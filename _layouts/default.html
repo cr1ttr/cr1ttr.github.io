@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: "en-US" }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>{{ page.title }} - {{ site.title }}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ "/assets/css/main.css" | relative_url }}">
+    <link rel="stylesheet" href="{{ "/assets/css/crt.css" | relative_url }}">
+    <div class="crt"></div>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+
+  </head>
+  <body>
+    <div><span class="accent">
+      &gt; cr1ttr 
+      <span class="caret-blink">|</span> 
+        <a href="/">home</a> 
+      <span class="caret-blink">|</span> 
+        <a href="#">blog</a> 
+      <span class="caret-blink">|</span>
+        <a href="#">about</a> 
+      <span class="caret-blink">|</span>
+    </span></div>
+    <hr>
+    {{ content }}
+  </body>
+</html>
