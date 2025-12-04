@@ -47,6 +47,8 @@
             statusLineProgress.textContent = getScrollPercent().toString() + "%"
           } 
         });
+
+        window.addEventListener('mousemove', updateCusorPosition);
       });
 
 
