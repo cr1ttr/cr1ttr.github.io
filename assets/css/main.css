@@ -61,16 +61,6 @@ a:hover {
     color: var(--clr-accent-contrast);
 }
 
-/* .navlist__link {
-    display: flex;
-    flex-direction: row;
-    list-style: ">";
-} */
-
-/* .navlist__link {
-    list-style: ">";
-} */
-
 hr {
     border-color: var(--clr-surface-a10);
     border-top: 1px;
@@ -78,7 +68,8 @@ hr {
 }
 
 .navlist__link-container {
-    list-style: none;
+    list-style: circle;
+    margin-left: 20px;
 }
 
 .navbar__link {

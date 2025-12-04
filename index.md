@@ -3,14 +3,15 @@ layout: default
 title: "home"
 ---
 
-welcome to my website! im izzy, im a 21y/o developer based in the midwest.    
-mainly made this website to ramble about whatever im working on. woof.  
-  
-name(s):   isabelle/belle/izzy  
-pronouns:  (she/they/it)  
-languages: c, c++, c#, rust, lua, python, ruby, html, css, js, java, sql  
+welcome to my website! im <span style="color: var(--clr-anchor-medium">izzy</span>, im a 21y/o developer based in the midwest.\
+mainly made this website to ramble about whatever im working on. woof.\
+\
+<span style="color: var(--clr-anchor-light">name(s)</span>: isabelle/belle/izzy\
+<span style="color: var(--clr-anchor-light">pronouns</span>: (she/they/it)\
+<span style="color: var(--clr-anchor-light">languages</span>: c, c++, c#, rust, lua, python, ruby, html, css, js, java, sql\
+\
+<span style="color: var(--clr-anchor-medium)">˚ ⋅૮₍ › ˕ ‹ ₎ა ⋅˚⋅</span>
 
-<span class="accent">˚ ⋅૮₍ › ˕ ‹ ₎ა ⋅˚⋅</span>
 
 ***
 <nav class="navlist">
