@@ -3,7 +3,13 @@ layout: default
 title: "home"
 ---
 
-hi! welcome to my corner of the internet, not much to see here for now...  
+welcome to my website! im izzy, im a 21y/o developer based in the midwest.    
+mainly made this website to ramble about whatever im working on. woof.  
+  
+name(s):   isabelle/belle/izzy  
+pronouns:  (she/they/it)  
+languages: c, c++, c#, rust, lua, python, ruby, html, css, js, java, sql  
+
 <span class="accent">˚ ⋅૮₍ › ˕ ‹ ₎ა ⋅˚⋅</span>
 
 ***
