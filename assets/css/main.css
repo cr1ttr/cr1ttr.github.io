@@ -9,7 +9,7 @@
   100% { opacity: 0; }
 }
 
-span.accent {
+.accent-color {
     color: #FBDB93;
     font-style: normal;
 }
@@ -33,6 +33,16 @@ hr {
 
 * {
   font-variant-ligatures: none;
+}
+
+.navbar-link-container {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-link {
+    list-style: none;
 }
 
 body {
