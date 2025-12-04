@@ -11,22 +11,85 @@
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
     
+    <link rel="stylesheet" href="{{ "/assets/css/reset.css" | relative_url }}">
     <link rel="stylesheet" href="{{ "/assets/css/main.css" | relative_url }}">
     <link rel="stylesheet" href="{{ "/assets/css/crt.css" | relative_url }}">
     
     <div class="crt"></div>
+
+    <script>
+
+      function updateCusorPosition(event) {
+        statusLineCursor = document.querySelector('.status-line__cursor');
+        if (statusLineCursor !== null) {
+          statusLineCursor.textContent = event.screenX.toString() + ":" + event.screenY.toString()  
+        }
+      }
+
+      function getScrollPercent() {
+        var h = document.documentElement;
+        var b = document.body; 
+        var st = 'scrollTop'; 
+        var sh = 'scrollHeight';
+        return (h[st]||b[st]) / ((h[sh]||b[sh]) - h.clientHeight) * 100;
+      }
+
+      window.addEventListener('DOMContentLoaded', function() {
+        statusLineOS = document.querySelector('.status-line__os');
+        if (statusLineOS !== null) {
+          statusLineOS.textContent = navigator.platform.toLowerCase();
+        }
+      
+        window.addEventListener('scroll', (event) => {
+          console.log("test");
+          statusLineProgress = document.querySelector('.status-line__progress');
+          if (statusLineProgress !== null) {
+            statusLineProgress.textContent = getScrollPercent().toString() + "%"
+          } 
+        });
+      });
+
+
+
+
+    </script>
+
   </head>
-  <header>
-    <div class="site-logo accent-color">&gt; cr1ttr</div>  
-    <nav class="navbar">
-      <ul class="navbar-link-container">
-        <li class="navbar-link"><a href="/">home</a></li>
-        <li class="navbar-link"><a href="/blog">blog</a></li> 
-      </ul>
-    </nav>
-  </header>
-  <body>
-    {{ content }}
+  
+  <body class="site">
+
+    <header class="site__header">
+      <div class="site__logo">&gt; cr1ttr</div>  
+      <nav class="navbar">
+        <ul class="navbar__link-container navbar__link-container--no-style">
+          <li class="navbar__link"><a href="/">home</a></li>
+          <div class="status-line__item status-line__separator">|</div>
+          <li class="navbar__link"><a href="/blog">blog</a></li> 
+          <div class="status-line__item status-line__separator">|</div>
+        </ul>
+      </nav>
+    </header>
+
+    <hr>
+
+    <main class="site__content">{{ content }}</main>
+
+    <footer class="status-line">
+        <div class="status-line__item status-line__mode">NORMAL</div>
+        <div class="status-line__item status-line__branch"><i class="fa-brands fa-git-alt"></i> main</div>
+        <div class="status-line__item status-line__separator">></div>
+        <div class="status-line__item status-line__file">cr1ttr/{{ page.title }}.rs</div>
+        <div class="status-line__item status-line__spacer"></div>
+        <div class="status-line__item status-line__encoding">utf-16</div>
+        <div class="status-line__item status-line__separator">|</div>
+        <div class="status-line__item status-line__os">?</div>
+        <div class="status-line__item status-line__separator">|</div>
+        <div class="status-line__item status-line__language"><i class="fa-brands fa-rust"></i></div>
+        <div class="status-line__item status-line__separator">|</div>
+        <div class="status-line__item status-line__progress">?</div>
+        <div class="status-line__item status-line__cursor">0:0</div>
+    </footer>
+
   </body>
 
   </html>
