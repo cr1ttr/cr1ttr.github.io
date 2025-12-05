@@ -7,3 +7,8 @@
     padding: 0;
     font-variant-ligatures: none;
 }
+
+ul, ol {
+    margin: revert;
+    padding: revert;
+}
