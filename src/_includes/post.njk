@@ -1,0 +1,14 @@
+{% extends "default.njk" %}
+
+
+{% block content %}
+    <div class="post-meta">
+        <h1 class="post-header" style="color: var(--yellow);">{{title}}</h1>
+        <time class="post-time">updated: {{page.date | readableDate}}</time>
+    </div>
+    <div class="post-body">
+        {{ content | safe }}
+        <br>
+        <a href="#">&gt; back to top</a>
+    </div>
+{% endblock %}

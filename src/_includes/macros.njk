@@ -1,0 +1,10 @@
+
+{% macro repeat(s, n) %}{% for i in range(n) %}{{s}}{% endfor %}{% endmacro %}
+
+{% macro comment_block(text) %}
+<pre class="comment-block">
+#####{{ repeat("#", text | length) }}#####
+#### {{text}} ####
+#####{{ repeat("#", text | length) }}#####
+</pre>
+{% endmacro %}

@@ -1,0 +1,162 @@
+@import url("/static/css/JetBrainsMonoImport.css");
+
+:root {
+    --bg:      #1e1e2e;
+    --surface: #313244;
+    --overlay: #45475a;
+    --text:    #cdd6f4;
+    --muted:   #6c7086;
+    --green:   #a6e3a1;
+    --blue:    #89b4fa;
+    --purple:  #cba6f7;
+    --red:     #f38ba8;
+    --yellow:  #f9e2af;
+}
+
+* {
+    font-family: "JetBrains Mono";
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+}
+
+.crt-overlay {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+.crt-overlay::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 0, 0, 0.15) 2px,
+        rgba(0, 0, 0, 0.15) 4px
+    );
+}
+
+main {
+    margin: 10px;
+}
+
+.crt-overlay::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, transparent 60%, rgba(0, 0, 0, 0.25) 100%);
+}
+
+hr {
+    border-bottom: 1px dashed var(--text);
+}
+
+.nav {
+    display: flex;
+    width: 100%;
+    padding: 10px;
+}
+
+.nav-spacer {
+    flex: 1;
+}
+
+.nav-ps1 {
+    user-select: none;
+}
+
+a {
+    color: var(--muted);
+    text-decoration: none;
+    background-color: var(--surface);
+    &.nav-link-active { color: var(--yellow); }
+    &:hover { color: var(--text); }
+}
+
+.nav-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.comment-block {
+    color: var(--muted);
+}
+
+
+.post-link {
+    color: var(--muted);
+    text-decoration: none;
+    background-color: var(--surface);
+    &:hover { color: var(--text); }
+}
+
+.post-card {
+    display: flex;
+    background-color: var(--surface);
+    flex-direction: column;
+    padding: 10px;
+    font-size: 12px;
+}
+
+.post-card:hover > .post-card__title {
+    color: var(--yellow);
+}
+
+.post-body {
+    max-width: 100ch;
+    width: 50%;
+    margin: 0 auto;
+}
+
+.post-header {
+    text-decoration: underline;
+}
+
+.post-header, .post-time {
+    display: block;
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.post-meta {
+    margin: 10px;
+    padding: 10px;
+}
+
+.post-time {
+    color: var(--muted);
+}
+
+.post-card__title {
+    font-weight: 500;
+    font-style: italic;
+    font-size: 16px;
+}
+
+.accent-yellow {
+    color: var(--yellow)
+}
+
+.status-line {
+    background-color: var(--surface);
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 10px;
+    display: flex;
+
+    &.mode {
+        background-color: var(--yellow);
+    }
+}

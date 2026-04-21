@@ -1,0 +1,29 @@
+{% extends "base.njk" %}
+
+<!--{% macro nav_button(text, href) %}
+<a href="{{ href }}" {% if page.url.startsWith(href) %}class="nav-link-active"{% endif %}>[ ${{ text }} ]</a>
+{% endmacro %}-->
+
+{% macro nav_button(text, href) %}
+{% set isActive = (href == "/" and page.url == "/") or (href != "/" and page.url.startsWith(href)) %}
+<a href="{{ href }}" {% if isActive %}class="nav-link-active"{% endif %}>[ ${{ text }} ]</a>
+{% endmacro %}
+
+{% block header %}
+<div class="crt-overlay"></div>
+<nav class="nav">
+    <div class="nav-ps1">cr1ttr@github.io[<span class="accent-yellow">~{{page.url}}</span>]:</div>
+    <div class="nav-spacer"></div>
+    <ul class="nav-links">
+        {{ nav_button("HOME", "/") }}
+        {{ nav_button("ABOUT", "/about/")}}
+        {{ nav_button("PROJECTS", "/projects/")}}
+        {{ nav_button("BLOG", "/blog/")}}
+    </ul>
+</nav>
+<hr>
+{% endblock %}
+
+{% block content %}
+    {{ content | safe }}
+{% endblock %}
