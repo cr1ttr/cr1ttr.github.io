@@ -1,17 +1,22 @@
 ---
-
+import CommentHeader from "../components/comment_header.astro";
+import Container from "../components/container.astro";
+import DefaultLayout from "../layout/default_layout.astro";
+import AsciiBlock from "../components/ascii_block.astro";
+import FaIcon from "../components/fa_icon.astro"
+import icon from '/icon.txt?raw';
+import flavor from '/flavor.txt?raw';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<DefaultLayout title="Home">
+    <AsciiBlock size="4px" color="var(--yellow-11)">{icon}</AsciiBlock>
+<Container header="welcome to my website!">
+- use the `cd` command or the buttons on the nav to get around.
+- disable oneko with `no-neko` (not implemented)
+- disable crt-overlay with `no-crt` (not implemented)
+</Container>
+<Container header="note" padding={3}>
+godspeed if you have js disabled or use a screen-reader...
+</Container>
+    <AsciiBlock size="4px" color="var(--gray-8)">{flavor}</AsciiBlock>
+</DefaultLayout>

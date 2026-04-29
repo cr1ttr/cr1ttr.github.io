@@ -1,0 +1,225 @@
+---
+import type Link from "../types/link"
+
+interface Props {
+  links: Link[]
+}
+
+const { links } = Astro.props;
+
+---
+
+<style>
+    .navbar {
+        display: flex;
+        width: 100%;
+        padding: 10px;
+        flex-direction: row;
+        background-color: var(--gray-2);
+        align-items: center;
+        gap: 0.5em;
+        position: fixed;
+        top: 0;
+
+    }
+
+    .navbar__input, .navbar__ps1 {
+        background-color: var(--gray-2);
+        color: var(--gray-11);
+    }
+
+    .navbar__ps1 {
+        padding: 0 0.5em;
+        color: var(--yellow-11);
+        font-weight: bold;
+    }
+
+    .navbar__input-form {
+        flex-grow: 1;
+    }
+
+    .navbar__input-form-element {
+        border: none;
+        width: 100%;
+        background-color: transparent;
+        color: var(--gray-12);
+        font-weight: 100;
+        &:focus {
+            outline: none;
+        }
+    }
+
+    .navbar__command-line {
+        display: flex;
+        border: 1px var(--gray-5) solid;
+        align-items: center;
+        flex-direction: row;
+        flex: 1;
+        height: 2rem;
+    }
+
+    .navbar__link-container {
+        list-style: none;
+        display: flex;
+        flex-direction: row;
+        gap: 0.5em;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+        height: 2rem;
+    }
+
+    .navbar__link {
+        background-color: var(--gray-4);
+        border: 1px var(--gray-5) solid;
+        padding: 0.25em;
+        color: var(--gray-9);
+        text-decoration: none;
+        font-weight: bold;
+
+        &::before { content: "[ " }
+        &::after { content: " ]" }
+        &:hover { color: var(--gray-12); }
+    }
+
+    .navbar__menu-button {
+        background-color: var(--gray-3);
+        color: var(--gray-12);
+        border: 1px solid var(--gray-5);
+        cursor: pointer;
+        display: none;
+        width: 2rem;
+
+        &:hover {
+            color: var(--gray-11);
+        }
+    }
+
+    .navbar__link--active {
+        color: var(--yellow-11);
+    }
+
+    .navbar__ps1::after {
+        content: ":"
+    }
+
+    .navbar__spacer {
+        display: none;
+    }
+
+    @media (max-width: 575px) {
+        .navbar__input-form {
+            display: none;
+        }
+
+        .navbar__command-line {
+            flex: none;
+        }
+
+        .navbar__ps1::after {
+            content: "";
+        }
+
+        .navbar__spacer {
+            display: block;
+            flex-grow: 1;
+        }
+
+        .navbar__link-container {
+            display: none;
+        }
+
+        .navbar__menu-button {
+            display: block;
+        }
+    }
+
+
+    html.dark .fa-sun { display: inline; }
+    html.light .fa-moon { display: inline; }
+
+    .theme-switch {
+        display: none;
+        color: var(--gray-8);
+        &:hover {
+            color: var(--yellow-11);
+            cursor: pointer;
+        }
+    }
+</style>
+
+
+<nav class="navbar">
+    <div class="navbar__command-line">
+        <div class="navbar__ps1">[~{Astro.url.pathname}]</div>
+        <form class="navbar__input-form">
+            <input
+                class="navbar__input-form-element"
+                type="text"
+                name="command"
+                autocomplete="off"
+                placeholder="type a command here"
+                autofocus
+            />
+        </form>
+    </div>
+    <div class="navbar__spacer"></div>
+    <ul class="navbar__link-container">
+        { links.map((link) => (
+            <li><a class={`navbar__link ${ Astro.url.pathname == link.href ? "navbar__link--active" : "" }`} href={link.href}>{link.label}</a></li>
+        ))}
+    </ul>
+    <i class="fa-solid theme-switch fa-moon"/>
+    <i class="fa-solid theme-switch fa-sun"/>
+    <button class="navbar__menu-button"><i class="fa-solid fa-bars"/></button>
+</nav>
+
+
+
+
+
+<script>
+  const form = document.querySelector(".navbar__input-form");
+  const input = document.querySelector(".navbar__input-form-element") as HTMLInputElement;
+
+
+  const theme_selector = document.querySelectorAll(".theme-switch");
+  theme_selector.forEach((selector) => {
+    selector.addEventListener("click", () => {
+      const current = localStorage.getItem("theme") ?? "dark";
+      window.theme_set(current === "dark" ? "light" : "dark");
+    });
+  });
+
+
+  if (input) {
+    input.focus();
+  }
+
+  if (form) {
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const target = event.target as HTMLFormElement;
+      const input = target.querySelector(".navbar__input-form-element") as HTMLInputElement;
+      if (input) {
+        const cmd_split = input.value.trim().split(" ");
+        if (cmd_split[0] === "cd") {
+          if (cmd_split[1] === "..") {
+            history.back();
+          } else if (cmd_split[1] === ".") {
+            window.location.reload();
+          } else if (cmd_split[1].startsWith("~")) {
+            let normalized = cmd_split[1].slice(1).replace(/^\//, '');
+            window.location.href = "/" + normalized;
+          } else if (cmd_split[1].startsWith("/")) {
+            window.location.href = cmd_split[1];
+          } else {
+            window.location.href += `${cmd_split[1]}/`;
+          }
+        }
+        input.value = "";
+      }
+    });
+  }
+
+</script>

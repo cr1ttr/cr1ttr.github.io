@@ -1,0 +1,41 @@
+---
+import NavBar from "../components/nav_bar.astro";
+import BaseLayout from "./base_layout.astro";
+import CrtOverlay from "../components/crt_overlay.astro";
+import CursorGlow from "../components/cursor_glow.astro";
+import CommentHeader from "../components/comment_header.astro";
+import StatusLine from "../components/status_line.astro";
+import type { Props as BaseProps } from "./base_layout.astro"
+import NAVBAR_LINKS from "../data/navbar_links";
+
+interface Props extends BaseProps {}
+
+const { ...props } = Astro.props;
+
+---
+
+<style>
+    hr {
+        border: none;
+        color: var(--yellow-12);
+        border-bottom: 1px solid;
+    }
+
+    .main-content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin: 4rem;
+    }
+</style>
+
+<BaseLayout {...props}>
+    <div slot="header">
+        <CrtOverlay/>
+        <NavBar slot="header" links={NAVBAR_LINKS}/>
+        <CursorGlow/>
+    </div>
+    <div slot="main" class="main-content"><slot/></div>
+    <StatusLine slot="footer"/>
+</BaseLayout>

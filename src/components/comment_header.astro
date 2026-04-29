@@ -1,0 +1,54 @@
+---
+
+---
+
+<style>
+    .comment-header {
+        font-size: 1rem;
+        color: var(--gray-9);
+        display: flex;
+        font-weight: bold;
+        flex-direction: column;
+        pointer-events: none;
+        user-select: none;
+    }
+
+    .comment-header__center {
+        display: flex;
+        flex-direction: row;
+    }
+
+</style>
+
+
+<div class="comment-header" role="heading">
+    <pre class="comment-header__top" aria-hidden="true"/>
+    <div class="comment-header__center">
+        <pre class="comment-header__left" aria-hidden="true"/>
+        <pre class="comment-header__content"><slot/></pre>
+        <pre class="comment-header__right" aria-hidden="true"/>
+    </div>
+    <pre class="comment-header__bottom" aria-hidden="true"/>
+<div/>
+
+<script>
+    document.querySelectorAll('.comment-header').forEach((header) => {
+        const center = header.querySelector('.comment-header__center');
+        const content = center?.querySelector('.comment-header__content');
+        const left = center?.querySelector('.comment-header__left');
+        const right = center?.querySelector('.comment-header__right');
+        const top = header.querySelector('.comment-header__top');
+        const bottom = header.querySelector('.comment-header__bottom');
+
+        if (content && top && bottom && left && right) {
+            const text = content.textContent.trim().toUpperCase();
+            const barEdge = '#'.repeat(4);
+            const barFill = '#'.repeat(`${barEdge} ${text} ${barEdge}`.length);
+            content.textContent = text;
+            top.textContent = barFill;
+            bottom.textContent = barFill;
+            left.textContent = `${barEdge} `;
+            right.textContent = ` ${barEdge}`;
+        }
+    });
+</script>

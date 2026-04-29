@@ -1,0 +1,56 @@
+---
+import DefaultLayout from "../../layout/default_layout.astro"
+import Container from "../../components/container.astro"
+import CommentHeader from "../../components/comment_header.astro"
+import FaIcon from "../../components/fa_icon.astro"
+---
+
+<style>
+    a {
+        background-color: var(--gray-4);
+        border: 1px var(--gray-5) solid;
+        padding: 0.25em;
+        color: var(--gray-9);
+        text-decoration: none;
+        font-weight: bold;
+
+        &::before { content: "[ " }
+        &::after { content: " ]" }
+        &:hover { color: var(--gray-12); }
+    }
+</style>
+
+<DefaultLayout title="About">
+    <CommentHeader>ABOUT</CommentHeader>
+<Container header="OVERVIEW" padding={3}>
+hey there, welcome to my website!
+i'm isabelle a.k.a 'cr1ttr' --- i'm a software, tool, and game developer.
+i made this website to ramble and show the things i'm working on.
+</Container>
+
+<Container header="PERSONAL" padding={17}>
+nickname(s): isabelle, izzy, belle, 'cr1ttr'
+age: 21y/o
+pronouns: (she/they/it)
+gender: demigirl
+sexuality: gyneromantic
+</Container>
+
+<Container header="SOFTWARE" padding={16}>
+&gt; my favorites:
+    - rust, godot
+&gt; others i know:
+    - sdl2, c, c++, c#, lua, html/css/js, pico8
+&gt; interested in:
+    - go, haskell, ocaml
+</Container>
+
+<div class="socials-container">
+    <a href="https://github.com/cr1ttr/"><FaIcon iconType="brands" name="github"/></a>
+    <a href="https://bsky.app/profile/cr1ttr.bsky.social"><FaIcon iconType="brands" name="bluesky"/></a>
+    <a href="https://discord.gg/FsHRDs9HaT"><FaIcon iconType="brands" name="discord"/></a>
+
+</div>
+
+
+</DefaultLayout>

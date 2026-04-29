@@ -1,0 +1,59 @@
+---
+interface Props {
+  padding?: number
+  header?: string
+}
+
+const { padding = 1, header = null } = Astro.props;
+---
+
+<style>
+    .container {
+        color: var(--gray-12);
+        user-select: none;
+        pointer-events: none;
+    }
+
+    .container a {
+        pointer-events: auto;
+        color: white;
+    }
+</style>
+
+<pre class="container"><slot/></pre>
+
+<!-- would not recommend looking below if you value your sanity -->
+<script is:inline={true} define:vars={{ padding, header }}>
+    const BOX_DRAW_CORNER_TL = '╭';
+    const BOX_DRAW_CORNER_TR = '╮';
+    const BOX_DRAW_CORNER_BL = '╰';
+    const BOX_DRAW_CORNER_BR = '╯';
+    const BOX_DRAW_PIPE      = '│';
+    const BOX_DRAW_BAR       = '─';
+
+    const element = document.currentScript.previousElementSibling;
+    const space_padding = ' '.repeat(padding);
+    const element_content = element.innerText.trim();
+
+    const lines = element_content.split('\n');
+    const line_lengths = lines.map(line => line.length);
+    const longest_width = Math.max(...line_lengths);
+    const bar_fill_len = longest_width + padding * 2 + 1;
+    const bar_fill = BOX_DRAW_BAR.repeat(bar_fill_len);
+
+    let fill_top = null;
+    console.log(header);
+    if (header) {
+        const bar_fill_header_len = bar_fill_len - header.length - 2;
+        const bar_fill_header = BOX_DRAW_BAR.repeat(bar_fill_header_len);
+        fill_top = `<span style="color: var(--gray-7);">${BOX_DRAW_CORNER_TL}</span> <span style="color: var(--yellow-11")>${header}</span> <span style="color: var(--gray-7);">${bar_fill_header}${BOX_DRAW_CORNER_TR}</span>`;
+    } else {
+        fill_top = `<span style="color: var(--gray-7);">${BOX_DRAW_CORNER_TL}${bar_fill}${BOX_DRAW_CORNER_TR}</span>`;
+    }
+    const fill_bottom = `<span style="color: var(--gray-7);">${BOX_DRAW_CORNER_BL}${bar_fill}${BOX_DRAW_CORNER_BR}</span>`;
+    const content = element_content.split('\n').map(
+        line => `<span style="color: var(--gray-7);">${BOX_DRAW_PIPE}</span> ${line.padEnd(longest_width)}${space_padding}${space_padding}<span style="color: var(--gray-7);">${BOX_DRAW_PIPE}</span>`
+    ).join('\n');
+    const styled_container = `${fill_top}\n${content}\n${fill_bottom}`;
+    element.innerHTML = `<pre>${styled_container}</pre>`;
+</script>

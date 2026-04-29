@@ -1,0 +1,65 @@
+---
+
+import "../styles/globals.css";
+import theme_set from "../scripts/theme_set.js";
+
+export interface Props {
+	title: string,
+	description?: string,
+	openGraphTitle?: string,
+	openGraphDescription?: string,
+	openGraphImage?: string,
+	favicon?: string
+}
+
+const {
+  title,
+  description,
+  openGraphTitle = title,
+  openGraphDescription = description,
+  openGraphImage,
+  favicon = "favicon.ico"
+} = Astro.props;
+
+---
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <style is:inline>
+            .no-transition *, .no-transition *::before, .no-transition *::after {
+              transition: none !important;
+            }
+        </style>
+        <script is:inline>
+            const theme = localStorage.getItem('theme') ?? 'dark';
+            document.documentElement.classList.add('no-transition', theme);
+            const icon = document.querySelector('.theme-icon');
+            if (icon) { icon.classList.add(theme === 'dark' ? 'fa-sun' : 'fa-moon'); }
+            setTimeout(() => { document.documentElement.classList.remove('no-transition'); }, 100);
+        </script>
+        <meta charset="UTF-8" />
+        <title>{title} - cr1ttr</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <meta name="description" content={description} />
+        <link rel="icon" href={`/${favicon}`}>
+        <meta property="og:title" content={openGraphTitle} />
+        <meta property="og:description" content={openGraphDescription} />
+        <meta property="og:image" content={openGraphImage} />
+       	<link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Noto+Color+Emoji&family=Noto+Emoji:wght@300..700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    </head>
+    <body>
+        <script is:inline src="/oneko/oneko.js"></script>
+        <script>
+            import { theme_set } from '../scripts/theme_set.js';
+            window.theme_set = theme_set;
+            window.theme_set(localStorage.getItem("theme"));
+        </script>
+        <header><slot name="header"/></header>
+        <main><slot name="main"/></main>
+        <footer><slot name="footer"/></footer>
+    </body>
+</html>

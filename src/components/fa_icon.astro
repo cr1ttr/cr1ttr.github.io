@@ -1,0 +1,10 @@
+---
+interface Props {
+  iconType?: string
+  name: string
+}
+
+const { iconType = "solid", name } = Astro.props;
+---
+
+<i class={`fa-${iconType} fa-${name}`}></i>

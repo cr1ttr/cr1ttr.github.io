@@ -1,0 +1,19 @@
+---
+interface Props {
+  size: string;
+  color: string;
+}
+const { size, color } = Astro.props;
+---
+
+<style define:vars={{size, color}}>
+    pre {
+        line-height: 1;
+        font-size: var(--size);
+        pointer-events: none;
+        user-select: none;
+        color: var(--color);
+    }
+</style>
+
+<pre aria-hidden="true"><slot/></pre>

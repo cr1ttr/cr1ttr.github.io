@@ -1,0 +1,31 @@
+---
+import type Switch from '../types/switch';
+interface Props extends Switch {}
+const { enabled = true } = Astro.props;
+---
+
+<style>
+
+.crt-overlay--enabled {
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+        to bottom,
+        transparent 0px,
+        transparent 1px,
+        rgba(0, 0, 0, 0.15) 1px,
+        rgba(0, 0, 0, 0.15) 2px
+    );
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+.crt-overlay--disabled {
+    display: none;
+}
+
+</style>
+
+<div class={ enabled ? "crt-overlay--enabled" : "crt-overlay--disabled" }></div>

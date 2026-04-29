@@ -1,0 +1,25 @@
+---
+
+---
+
+<style>
+    #cursor-glow {
+        width: 4000px;
+        height: 4000px;
+        background: radial-gradient(circle at center, color-mix(in srgb, var(--gray-12) 5%, transparent) 0%, transparent 50%);
+        pointer-events: none;
+        position: fixed;
+        z-index: -1;
+    }
+</style>
+
+<div id="cursor-glow"></div>
+
+<script>
+    const element = document.getElementById('cursor-glow');
+    document.addEventListener('mousemove', (e) => {
+      if (element) {
+          element.style.transform = `translate(${e.clientX - 2000}px, ${e.clientY - 2000}px)`;
+      }
+    });
+</script>
