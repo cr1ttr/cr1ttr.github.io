@@ -1,7 +1,6 @@
 ---
 
 import "../styles/globals.css";
-import theme_set from "../scripts/theme_set.js";
 
 export interface Props {
 	title: string,
@@ -33,10 +32,10 @@ const {
         </style>
         <script is:inline>
             const theme = localStorage.getItem('theme') ?? 'dark';
-            document.documentElement.classList.add('no-transition', theme);
-            const icon = document.querySelector('.theme-icon');
-            if (icon) { icon.classList.add(theme === 'dark' ? 'fa-sun' : 'fa-moon'); }
-            setTimeout(() => { document.documentElement.classList.remove('no-transition'); }, 100);
+            const cl = document.documentElement.classList;
+            cl.remove(theme === "dark" ? "light" : "dark");
+            cl.add(theme);
+            localStorage.setItem("theme", theme);
         </script>
         <meta charset="UTF-8" />
         <title>{title} - cr1ttr</title>
@@ -53,11 +52,6 @@ const {
     </head>
     <body>
         <script is:inline src="/oneko/oneko.js"></script>
-        <script>
-            import { theme_set } from '../scripts/theme_set.js';
-            window.theme_set = theme_set;
-            window.theme_set(localStorage.getItem("theme"));
-        </script>
         <header><slot name="header"/></header>
         <main><slot name="main"/></main>
         <footer><slot name="footer"/></footer>

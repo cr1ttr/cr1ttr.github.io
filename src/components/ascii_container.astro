@@ -1,0 +1,35 @@
+---
+interface Props {
+  label?: string;
+}
+
+const { label } = Astro.props;
+---
+
+<style>
+  .ascii-box {
+    position: relative;
+    border: 1px solid var(--gray-9);
+    border-radius: 6px;
+    font-size: 0.75rem;
+    padding: 1rem;
+  }
+  .ascii-box__label {
+    position: absolute;
+    top: -0.6em;
+    left: 0.6rem;
+    background: var(--color-background); /* match your page background */
+    color: var(--yellow-11);
+    padding: 0 0.4rem;
+    font-size: 0.75rem;
+  }
+  .ascii-box__no-label {
+      display: none;
+  }
+</style>
+
+
+<div class:list={['ascii-box', { 'ascii-box--no-label': !label }]}>
+    {label && <span class="ascii-box__label">{label}</span>}
+    <slot/>
+</div>

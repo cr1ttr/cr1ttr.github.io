@@ -1,10 +1,10 @@
 ---
 interface Props {
   iconType?: string
-  name: string
+  icon: string
 }
 
-const { iconType = "solid", name } = Astro.props;
+const { iconType = "solid", icon } = Astro.props;
 ---
 
-<i class={`fa-${iconType} fa-${name}`}></i>
+<i class={`fa-${iconType} fa-${icon}`}></i>

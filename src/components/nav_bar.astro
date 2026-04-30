@@ -186,8 +186,12 @@ const { links } = Astro.props;
   const theme_selector = document.querySelectorAll(".theme-switch");
   theme_selector.forEach((selector) => {
     selector.addEventListener("click", () => {
-      const current = localStorage.getItem("theme") ?? "dark";
-      window.theme_set(current === "dark" ? "light" : "dark");
+      const cl = document.documentElement.classList;
+      const theme = localStorage.getItem('theme') ?? 'dark'
+      const next = theme === 'dark' ? 'light' : 'dark'
+      cl.remove(theme)
+      cl.add(next)
+      localStorage.setItem('theme', next)
     });
   });
 

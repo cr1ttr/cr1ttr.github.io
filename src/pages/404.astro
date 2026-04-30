@@ -1,8 +1,8 @@
 ---
-import Container from "../components/container.astro";
+import AsciiContainer from "../components/ascii_container.astro";
 import DefaultLayout from "../layout/default_layout.astro";
 ---
 
 <DefaultLayout title="404">
-    <Container padding={10} header="Error: (404)"> `cr1ttr.github.io{Astro.url.pathname}` does not exist... </Container>
+    <AsciiContainer label="Error: (404)"> `cr1ttr.github.io{Astro.url.pathname}` does not exist... </AsciiContainer>
 </DefaultLayout>
