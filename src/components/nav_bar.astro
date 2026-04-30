@@ -7,6 +7,12 @@ interface Props {
 
 const { links } = Astro.props;
 
+function isActive(href: string): boolean {
+  console.log(Astro.url.pathname);
+  if (href === "/") return Astro.url.pathname === "/";
+  return Astro.url.pathname.startsWith(href);
+}
+
 ---
 
 <style>
@@ -166,7 +172,7 @@ const { links } = Astro.props;
     <div class="navbar__spacer"></div>
     <ul class="navbar__link-container">
         { links.map((link) => (
-            <li><a class={`navbar__link ${ Astro.url.pathname.startsWith(link.href) ? "navbar__link--active" : "" }`} href={link.href}>{link.label}</a></li>
+            <li><a class={`navbar__link ${ isActive(link.href) ? "navbar__link--active" : "" }`} href={link.href}>{link.label}</a></li>
         ))}
     </ul>
     <i class="fa-solid theme-switch fa-moon"/>
