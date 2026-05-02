@@ -2,8 +2,46 @@
 import CommentHeader from "../../components/comment_header.astro";
 import AsciiContainer from "../../components/ascii_container.astro";
 import DefaultLayout from "../../layout/default_layout.astro";
+
+const posts = import.meta.glob('./posts/*.mdx', { eager: true });
+const postList = Object.values(posts);
 ---
 
+<style>
+    .post-container {
+        margin: 1em;
+        padding: 0;
+        list-style: none;
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+        /* adding this here so it doesnt show the pages rn because im lazy */
+        display: none;
+    }
+
+    .post-container__card {
+        cursor: pointer;
+    }
+
+    .no-posts--inactive {
+        display: none;
+    }
+
+    .no-posts--active {
+        display: block;
+    }
+</style>
+
 <DefaultLayout title="Blog">
-<AsciiContainer>NO POSTS YET...</AsciiContainer>
+    <div class="no-posts--active"><AsciiContainer>NO POSTS YET...</AsciiContainer></div>
+    <ul class="post-container">
+        {postList.map((post: any) => (
+            <li class="post-container__card" onclick={`window.location.href='${post.url}'`}>
+            <AsciiContainer label={`${post.frontmatter.title} - ${post.frontmatter.date}`}>
+                    <div>{post.frontmatter.description}</div>
+                </AsciiContainer>
+            </li>
+        ))}
+    </ul>
 </DefaultLayout>

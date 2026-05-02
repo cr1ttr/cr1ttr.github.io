@@ -1,0 +1,40 @@
+---
+import FaIcon from "./fa_icon.astro";
+
+---
+
+<style>
+    .callout {
+        border-radius: 8px;
+        border: 2px dotted  #3d6a96;
+        margin: 1em 0;
+    }
+
+    .callout__header {
+        display: flex;
+        font-weight: 800;
+        background-color: #2a4a6b;
+        color: #8ab8d4;
+        border-radius: 6px 6px 0 0;
+        border-bottom: 2px dotted #4a7fa5;
+        padding: 0.5em;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.5em;
+    }
+
+    .callout__content {
+        padding: 0.5em;
+        font-weight: bold;
+        color: #4a7fa5;
+    }
+
+</style>
+
+<div class="callout">
+    <div class="callout__header">
+        <FaIcon icon="info-circle"/>
+        <div>Info</div>
+    </div>
+    <div class="callout__content"><slot/></div>
+</div>

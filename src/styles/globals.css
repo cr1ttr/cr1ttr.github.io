@@ -32,3 +32,17 @@ body {
 .glow {
     text-shadow: 0 0 8px color-mix(in srgb, var(--yellow-11) 30%, transparent);
 }
+
+.astro-code {
+    padding: 1.25rem 1.5rem;
+    margin: 1.5rem 0;
+    border-radius: 8px;
+    overflow-x: auto;
+    border: 1px solid var(--yellow-9);
+}
+
+::root {
+    --callout-info-background: #0d1520;
+    --callout-info-border: #1d4ed8;
+    --callout-info-text: #93c5fd;
+}

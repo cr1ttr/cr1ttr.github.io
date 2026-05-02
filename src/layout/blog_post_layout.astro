@@ -1,0 +1,33 @@
+---
+import DefaultLayout from "./default_layout.astro"
+const { frontmatter } = Astro.props;
+---
+
+<style>
+    .blog-content-main {
+        width: 100ch;
+    }
+
+    h1 {
+        margin-top: 1em;
+        text-align: center;
+        color: var(--gray-12);
+    }
+
+    .date {
+        width: 100%;
+        text-align: center;
+        color: var(--gray-9);
+        margin-bottom: 1em;
+    }
+
+</style>
+
+<DefaultLayout title={frontmatter.title}>
+    <div class="blog-content-main">
+        <h1>{frontmatter.title}</h1>
+        <div class="date">last modified: {frontmatter.date}</div>
+        <slot/>
+    </div>
+
+</DefaultLayout>
