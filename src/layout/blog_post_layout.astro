@@ -4,30 +4,39 @@ const { frontmatter } = Astro.props;
 ---
 
 <style>
-    .blog-content-main {
+    .blog-content__main {
         width: 100ch;
     }
 
-    h1 {
+    .blog-content__title {
         margin-top: 1em;
+        font-size: 1.5em;
         text-align: center;
         color: var(--gray-12);
     }
 
-    .date {
+    .blog-content__date {
         width: 100%;
         text-align: center;
         color: var(--gray-9);
         margin-bottom: 1em;
     }
 
+    .blog-content__slot {
+        font-size: 0.8rem;
+    }
+
+    .blog-content__slot {
+
+    }
+
+
 </style>
 
 <DefaultLayout title={frontmatter.title}>
-    <div class="blog-content-main">
-        <h1>{frontmatter.title}</h1>
-        <div class="date">last modified: {frontmatter.date}</div>
-        <slot/>
+    <div class="blog-content__main">
+        <h1 class="blog-content__title">{frontmatter.title}</h1>
+        <div class="blog-content__date">last modified: {frontmatter.publishDate}</div>
+        <div class="blog-content__slot"><slot/></div>
     </div>
-
 </DefaultLayout>

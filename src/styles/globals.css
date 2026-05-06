@@ -33,6 +33,14 @@ body {
     text-shadow: 0 0 8px color-mix(in srgb, var(--yellow-11) 30%, transparent);
 }
 
+code:not(pre code) {
+    background-color: #111;
+    border-radius: 4px;
+    border: 1px solid #ffc92a;
+    color: #ffc92a;
+    padding: 0.25em;
+}
+
 .astro-code {
     padding: 1.25rem 1.5rem;
     margin: 1.5rem 0;
@@ -45,4 +53,24 @@ body {
     --callout-info-background: #0d1520;
     --callout-info-border: #1d4ed8;
     --callout-info-text: #93c5fd;
+}
+
+
+pre {
+  scrollbar-width: thin;
+  scrollbar-color: #876823 transparent;
+}
+
+pre::-webkit-scrollbar {
+  height: 4px;
+}
+pre::-webkit-scrollbar-track {
+  background: transparent;
+}
+pre::-webkit-scrollbar-thumb {
+  background: #876823;
+  border-radius: 2px;
+}
+pre::-webkit-scrollbar-thumb:hover {
+  background: #ffc92a;
 }

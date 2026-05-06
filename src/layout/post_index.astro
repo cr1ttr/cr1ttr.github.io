@@ -1,0 +1,65 @@
+---
+import { getCollection } from "astro:content";
+import AsciiContainer from "../components/ascii_container.astro";
+import DefaultLayout from "./default_layout.astro";
+
+interface IndexDefinition {
+  href: string,
+  label: string
+}
+
+interface Props {
+  title: string
+  base: string
+  collection?: string
+  indexList?: IndexDefinition[]
+}
+
+const { title, collection, base, indexList = [] } = Astro.props;
+const posts = await getCollection(collection);
+
+const fmt = new Intl.DateTimeFormat("en-US", {
+  year: "numeric",
+  month: "numeric",
+  day: "numeric"
+});
+---
+
+<style>
+    .post-container {
+        margin: 1em;
+        padding: 0;
+        list-style: none;
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+    }
+
+    .post-container__card {
+        cursor: pointer;
+        display: block;
+    }
+</style>
+
+<DefaultLayout title={title}>
+    {posts.length == 0 && indexList.length == 0 ? <AsciiContainer>NO POSTS YET...</AsciiContainer> : null }
+    <ul class="post-container">
+        {indexList.map((index: IndexDefinition) => (
+            <li class="post-container__card" onclick={`window.location.href="${index.href}"`}>
+            <AsciiContainer>
+                    <div>{index.label}</div>
+                </AsciiContainer>
+            </li>
+        ))}
+
+
+        {posts.map((post: any) => (
+            <li class="post-container__card" onclick={`window.location.href="${base}/${post.id}"`}>
+            <AsciiContainer label={`${post.data.title} - ${fmt.format(post.data.publishDate)}`}>
+                    <div>{post.data.description}</div>
+                </AsciiContainer>
+            </li>
+        ))}
+    </ul>
+</DefaultLayout>

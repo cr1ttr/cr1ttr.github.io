@@ -8,7 +8,6 @@ interface Props {
 const { links } = Astro.props;
 
 function isActive(href: string): boolean {
-  console.log(Astro.url.pathname);
   if (href === "/") return Astro.url.pathname === "/";
   return Astro.url.pathname.startsWith(href);
 }
