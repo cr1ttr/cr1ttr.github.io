@@ -9,6 +9,23 @@ import AsciiContainer from "../components/ascii_container.astro";
 <style>
     .index-containers {
         margin: 2em;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1em;
+    }
+
+    .qc-webring {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .block-88x31 {
+        display: flex;
+        gap: 1em;
+        flex-direction: row;
+        flex-wrap: wrap;
     }
 </style>
 
@@ -25,6 +42,17 @@ import AsciiContainer from "../components/ascii_container.astro";
 - disable oneko with `no-neko` (not implemented)
 - disable crt-overlay with `no-crt` (not implemented)</pre>
         </AsciiContainer>
+        <AsciiBlock size="4px" color="var(--gray-8)">{flavor}</AsciiBlock>
+        <div class="qc-webring">
+            <a href="https://webring.queercoded.dev/prev?source=cr1ttr.github.io"><img src="/button-prev.png"/></a>
+            <a href="https://webring.queercoded.dev/"><img src="/88x31.gif"/></a>
+            <a href="https://webring.queercoded.dev/next?source=cr1ttr.github.io"><img src="/button-next.png"/></a>
+        </div>
+        <AsciiContainer>
+            <div class="block-88x31">
+                <a href="https://null-version-nova.github.io/"><img src="/manynamedangel.gif"/></a>
+                <a href="https://sugrstrz.com/"><img src="/SugrBadge.png"/></a>
+            </div>
+        </AsciiContainer>
     </div>
-    <AsciiBlock size="4px" color="var(--gray-8)">{flavor}</AsciiBlock>
 </DefaultLayout>
