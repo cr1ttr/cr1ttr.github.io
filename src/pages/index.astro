@@ -4,6 +4,9 @@ import AsciiBlock from "../components/ascii_block.astro";
 import icon from '/icon.txt?raw';
 import flavor from '/flavor.txt?raw';
 import AsciiContainer from "../components/ascii_container.astro";
+import Block88x31 from "../components/88x31_block.astro";
+import IMAGE_ANCHORS from "../data/88x31_data"
+
 ---
 
 <style>
@@ -21,12 +24,20 @@ import AsciiContainer from "../components/ascii_container.astro";
         flex-direction: row;
     }
 
+    .block-88x31-container {
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+    }
+
     .block-88x31 {
         display: flex;
         gap: 1em;
         flex-direction: row;
-        flex-wrap: wrap;
+        justify-content: center;
     }
+
+
 </style>
 
 <DefaultLayout
@@ -37,23 +48,36 @@ import AsciiContainer from "../components/ascii_container.astro";
 >
     <AsciiBlock size="4px" color="var(--yellow-11)">{icon}</AsciiBlock>
     <div class="index-containers">
-        <AsciiContainer label="welcome to my website!">
-<pre>- use the `cd` command or the buttons on the nav to get around.
-- disable oneko with `no-neko` (not implemented)
-- disable crt-overlay with `no-crt` (not implemented)</pre>
-        </AsciiContainer>
+        <AsciiContainer label="welcome to my website!"><p>
+            - use the `cd` command or the buttons on the nav to get around.<br/>
+            - disable oneko with `no-neko` (not implemented)<br/>
+            - disable crt-overlay with `no-crt` (not implemented)<br/>
+        </p></AsciiContainer>
         <AsciiBlock size="4px" color="var(--gray-8)">{flavor}</AsciiBlock>
         <div class="qc-webring">
             <a href="https://webring.queercoded.dev/prev?source=cr1ttr.github.io"><img src="/button-prev.png"/></a>
             <a href="https://webring.queercoded.dev/"><img src="/88x31.gif"/></a>
             <a href="https://webring.queercoded.dev/next?source=cr1ttr.github.io"><img src="/button-next.png"/></a>
         </div>
-        <AsciiContainer>
+          <Block88x31 images={IMAGE_ANCHORS} rowLength={4}/>
+
+
+        <!-- <div class="block-88x31-container">
             <div class="block-88x31">
                 <a href="https://cr1ttr.github.io/"><img src="/cr1ttr-88x31.gif"/></a>
                 <a href="https://null-version-nova.github.io/"><img src="/manynamedangel.gif"/></a>
                 <a href="https://sugrstrz.com/"><img src="/SugrBadge.png"/></a>
+                <a href="https://mint.pages.gay/"><img src="/mint-88x31.gif"/></a>
             </div>
-        </AsciiContainer>
+            <div class="block-88x31">
+                <a href="https://zoey-on-github.github.io/"><img src="/julie-88x31.png"/></a>
+            </div>
+        </div> -->
     </div>
 </DefaultLayout>
+
+
+<script>
+  import chunks from "../utils/chunks";
+  console.log(chunks([1,2,3,4,5], 4));
+</script>

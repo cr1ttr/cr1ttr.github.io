@@ -1,0 +1,41 @@
+---
+
+import type ImageAnchor from "../types/image_anchor";
+import AsciiContainer from "./ascii_container.astro";
+import chunks from "../utils/chunks";
+
+interface Props {
+  images: ImageAnchor[];
+  rowLength: number;
+}
+
+const { images = [], rowLength = 4 } = Astro.props;
+
+---
+
+
+<style>
+    .block {
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+    }
+
+    .block-row {
+        display: flex;
+        gap: 1em;
+        flex-direction: row;
+        justify-content: center;
+    }
+</style>
+
+<AsciiContainer>
+    <div class="block">
+        { chunks(images, rowLength).map(arr => (
+          <div class="block-row">
+              { arr.map(e => (
+                <a href={e.href}><img src={e.src}/></a>
+              ))}
+          </div>
+        ))}
+</AsciiContainer>
