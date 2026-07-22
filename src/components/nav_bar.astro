@@ -25,7 +25,7 @@ function isActive(href: string): boolean {
         gap: 0.5em;
         position: fixed;
         top: 0;
-        z-index: 9000;
+        z-index: 9999;
 
     }
 
@@ -152,6 +152,26 @@ function isActive(href: string): boolean {
             cursor: pointer;
         }
     }
+
+    .navbar__menu {
+        width: 100vw;
+        height: 100vh;
+        background-color: var(--gray-1);
+        position: absolute;
+        z-index: 9999;
+        top: 0;
+        left: 0;
+    }
+
+    .navbar__menu--inactive {
+        display: none;
+    }
+
+    .navbar__menu--active {
+        display: block;
+    }
+
+
 </style>
 
 
@@ -178,6 +198,9 @@ function isActive(href: string): boolean {
     <i class="fa-solid theme-switch fa-moon"/>
     <i class="fa-solid theme-switch fa-sun"/>
     <button class="navbar__menu-button"><i class="fa-solid fa-bars"/></button>
+    <div class="navbar__menu navbar__menu--inactive">
+
+    </div>
 </nav>
 
 
@@ -187,6 +210,23 @@ function isActive(href: string): boolean {
 <script>
   const form = document.querySelector(".navbar__input-form");
   const input = document.querySelector(".navbar__input-form-element") as HTMLInputElement;
+  const navbarMenuButton = document.querySelector(".navbar__menu-button");
+  const navbarMenu = document.querySelector(".navbar__menu");
+
+  if (navbarMenu && navbarMenuButton) {
+    navbarMenuButton.addEventListener("click", () => {
+      if (navbarMenu.classList.contains("navbar__menu--active")) {
+        navbarMenu.classList.remove("navbar__menu--active");
+        navbarMenu.classList.add("navbar__menu--inactive");
+      } else {
+        navbarMenu.classList.remove("navbar__menu--inactive");
+        navbarMenu.classList.add("navbar__menu--active");
+      }
+    });
+  }
+
+
+
 
 
   const theme_selector = document.querySelectorAll(".theme-switch");
