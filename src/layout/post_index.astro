@@ -16,7 +16,7 @@ interface Props {
 }
 
 const { title, collection, base, indexList = [] } = Astro.props;
-const posts = await getCollection(collection);
+// const posts = await getCollection(collection);
 
 const fmt = new Intl.DateTimeFormat("en-US", {
   year: "numeric",
@@ -42,9 +42,14 @@ const fmt = new Intl.DateTimeFormat("en-US", {
     }
 </style>
 
+<!-- this is broke asf -->
+
 <DefaultLayout title={title}>
-    {posts.length == 0 && indexList.length == 0 ? <AsciiContainer>NO POSTS YET...</AsciiContainer> : null }
-    <ul class="post-container">
+    <!-- {posts.length == 0 && indexList.length == 0 ? <AsciiContainer>NO POSTS YET...</AsciiContainer> : null } -->
+
+    <AsciiContainer>NO POSTS YET...</AsciiContainer>
+
+    <!-- <ul class="post-container">
         {indexList.map((index: IndexDefinition) => (
             <li class="post-container__card" onclick={`window.location.href="${index.href}"`}>
             <AsciiContainer>
@@ -61,5 +66,5 @@ const fmt = new Intl.DateTimeFormat("en-US", {
                 </AsciiContainer>
             </li>
         ))}
-    </ul>
+    </ul> -->
 </DefaultLayout>

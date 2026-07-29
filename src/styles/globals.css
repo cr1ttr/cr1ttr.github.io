@@ -1,5 +1,6 @@
 @import url("reset.css");
 @import url("colors.css");
+@import url("/fonts/stylesheet.css");
 
 
 html {
@@ -7,8 +8,8 @@ html {
     color: var(--gray-12);
 }
 
-body {
-    font-family: "JetBrains Mono";
+body, pre {
+    font-family: "Pixel Code";
 }
 
 *, *::before, *::after {
@@ -17,6 +18,14 @@ body {
 
 .no-transition *, .no-transition *::before, .no-transition *::after {
     transition: none !important;
+}
+
+hr {
+    width: 100%;
+    border-width: 1px;
+    border-style: dashed;
+    margin: 1em 0;
+    border-color: var(--gray-3);
 }
 
 /*@keyframes glow {

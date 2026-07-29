@@ -17,10 +17,30 @@ const {
   openGraphTitle = title,
   openGraphDescription = description,
   openGraphImage,
-  favicon = "favicon.ico"
+  favicon = "favicon.svg"
 } = Astro.props;
 
 ---
+
+<style>
+    html, body {
+        margin: 0;
+        height: 100%;
+    }
+
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+
+    main {
+        flex: 1;
+        display: flex;
+        width: 100%;
+    }
+</style>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -51,6 +71,7 @@ const {
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     </head>
     <body>
+        <!-- snooping huh? that's okay i won't stop you, even if i could. -->
         <script is:inline src="/oneko/oneko.js"></script>
         <header><slot name="header"/></header>
         <main><slot name="main"/></main>

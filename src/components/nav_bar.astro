@@ -81,7 +81,7 @@ function isActive(href: string): boolean {
         padding: 0.25em;
         color: var(--gray-9);
         text-decoration: none;
-        font-weight: bold;
+        /*font-weight: bold;*/
 
         &::before { content: "[ " }
         &::after { content: " ]" }
@@ -110,7 +110,7 @@ function isActive(href: string): boolean {
     }
 
     .navbar__spacer {
-        display: none;
+        flex-grow: 1;
     }
 
     @media (max-width: 575px) {
@@ -176,7 +176,13 @@ function isActive(href: string): boolean {
 
 
 <nav class="navbar">
-    <div class="navbar__command-line">
+    <!-- term-styled ps1 -->
+    <p>[<span style="color: var(--yellow-11)">cr1ttr</span><span style="color: var(--gray-7)">@</span><span style="color: var(--yellow-11)">github.io</span> <span style="color: var(--gray-7)">~{Astro.url.pathname}</span>]:</p>
+
+
+
+
+    <!-- <div class="navbar__command-line">
         <div class="navbar__ps1">[~{Astro.url.pathname}]</div>
         <form class="navbar__input-form">
             <input
@@ -188,7 +194,7 @@ function isActive(href: string): boolean {
                 autofocus
             />
         </form>
-    </div>
+    </div> -->
     <div class="navbar__spacer"></div>
     <ul class="navbar__link-container">
         { links.map((link) => (

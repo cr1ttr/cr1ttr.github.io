@@ -14,6 +14,7 @@ import '../../styles/queer_coded_font.css';
         color: var(--gray-9);
         text-decoration: none;
         font-weight: bold;
+        white-space: nowrap;
 
         &::before { content: "[ " }
         &::after { content: " ]" }
@@ -25,6 +26,11 @@ import '../../styles/queer_coded_font.css';
         flex-direction: column;
         margin: 3em;
     }
+
+    .containers :global(.ascii-box) {
+        width: 600px;
+    }
+
     .socials-container {
         display: flex;
         flex-direction: row;
@@ -60,6 +66,7 @@ i made this website to ramble and show the things i'm working on.</pre>
     </AsciiContainer>
     <AsciiContainer label="SOCIALS" >
         <div class="socials-container">
+            <a href="https://www.linkedin.com/in/isabelle-hall-208707425/"><FaIcon iconType="brands" icon="linkedin"/></a>
             <a href="https://github.com/cr1ttr"><FaIcon iconType="brands" icon="github"/></a>
             <a href="https://bsky.app/profile/cr1ttr.bsky.social"><FaIcon iconType="brands" icon="bluesky"/></a>
             <a href="https://discord.com/users/488889057603092480"><FaIcon iconType="brands" icon="discord"/></a>

@@ -6,6 +6,21 @@ import flavor from '/flavor.txt?raw';
 import AsciiContainer from "../components/ascii_container.astro";
 import Block88x31 from "../components/88x31_block.astro";
 import IMAGE_ANCHORS from "../data/88x31_data"
+import FaIcon from "../components/fa_icon.astro";
+
+
+import {
+  CURRENTLY_LISTENING_ARTIST,
+  CURRENTLY_LISTENING_KEY_ART,
+  CURRENTLY_LISTENING_NAME,
+  CURRENTLY_LISTENING_REDIRECT,
+  CURRENTLY_PLAYING_DEVELOPER,
+  CURRENTLY_PLAYING_KEY_ART,
+  CURRENTLY_PLAYING_PUBLISHER,
+  CURRENTLY_PLAYING_REDIRECT,
+  CURRENTLY_PLAYING_NAME
+} from "../data/index_supplements";
+import CommentHeader from "../components/comment_header.astro";
 
 ---
 
@@ -13,31 +28,69 @@ import IMAGE_ANCHORS from "../data/88x31_data"
     .index-containers {
         margin: 2em;
         width: 100%;
+        height: 100%;
         display: flex;
         flex-direction: column;
+        justify-content: center;
         align-items: center;
         gap: 1em;
     }
 
-    .qc-webring {
+    .hero {
         display: flex;
         flex-direction: row;
+        gap: 1em;
     }
 
-    .block-88x31-container {
+    .badges-section {
+        display: flex;
+        gap: 1em;
+    }
+
+    .currently-doing {
+        display: flex;
+        flex-direction: row;
+        gap: 1em;
+    }
+
+
+    #currently-playing, #currently-listening {
+        filter: grayscale();
+        border-radius: 6px;
+        object-fit: cover;
+    }
+
+    #currently-playing:hover, #currently-listening:hover {
+        filter: none;
+    }
+
+    #currently-playing {
+        width: 200px;
+        height: auto;
+    }
+
+    .currently-playing, .currently-listening {
         display: flex;
         flex-direction: column;
-        gap: 1em;
+        justify-content: space-around;
+        align-items: space-around;
+        gap: 0.6em;
+        text-align: center;
+        height: 100%;
     }
 
-    .block-88x31 {
+    .currently-playing span, .currently-listening span {
         display: flex;
-        gap: 1em;
-        flex-direction: row;
-        justify-content: center;
+        flex-direction: column;
+        gap: 0.25em;
+        font-size: 0.85em;
+        color: var(--gray-11);
     }
 
-
+    #currently-listening {
+        width: 100px;
+        height: auto;
+    }
 </style>
 
 <DefaultLayout
@@ -46,19 +99,73 @@ import IMAGE_ANCHORS from "../data/88x31_data"
     openGraphTitle="home"
     openGraphImage="/favicon.png"
 >
-    <AsciiBlock size="4px" color="var(--yellow-11)">{icon}</AsciiBlock>
     <div class="index-containers">
-        <AsciiContainer label="welcome to my website!"><p>
-            - use the `cd` command or the buttons on the nav to get around.<br/>
-            - disable oneko with `no-neko` (not implemented)<br/>
-            - disable crt-overlay with `no-crt` (not implemented)<br/>
-        </p></AsciiContainer>
-        <AsciiBlock size="4px" color="var(--gray-8)">{flavor}</AsciiBlock>
-        <div class="qc-webring">
-            <a href="https://webring.queercoded.dev/prev?source=cr1ttr.github.io"><img src="/button-prev.png"/></a>
-            <a href="https://webring.queercoded.dev/"><img src="/88x31.gif"/></a>
-            <a href="https://webring.queercoded.dev/next?source=cr1ttr.github.io"><img src="/button-next.png"/></a>
+
+
+        <div class="hero">
+            <AsciiBlock size="3px" color="var(--yellow-11)">{icon}</AsciiBlock>
+            <div class="currently-doing">
+                <AsciiContainer label='Currently Playing: '>
+                    <div class="currently-playing">
+                        <a href={CURRENTLY_PLAYING_REDIRECT}><img id="currently-playing" src={CURRENTLY_PLAYING_KEY_ART}></a>
+                        <span>
+                            <br/>
+                            {CURRENTLY_PLAYING_NAME}
+                            <br/>
+                            {CURRENTLY_PLAYING_DEVELOPER} - {CURRENTLY_PLAYING_PUBLISHER}
+                        </span>
+                    </div>
+                </AsciiContainer>
+                <AsciiContainer label = "Currently Listening To:">
+                    <div class="currently-listening">
+                    <a href={CURRENTLY_LISTENING_REDIRECT} style="display: flex; justify-content: center;"><img id="currently-listening" src={CURRENTLY_LISTENING_KEY_ART}></a>
+                    <span>
+                        <br/>
+                        {CURRENTLY_LISTENING_NAME}
+                        <br/>
+                        {CURRENTLY_LISTENING_ARTIST}
+                    </span>
+                    </div>
+                </AsciiContainer>
+            </div>
         </div>
-        <Block88x31 images={IMAGE_ANCHORS} rowLength={4}/>
+
+
+        <div class="badges-section">
+            <AsciiContainer label='add my button!'>
+                <div style="display: flex; justify-content: center; align-items: center;">
+                    <a href="https://cr1ttr.github.io"><img src='/badges/cr1ttr-88x31.gif'></a>
+                </div>
+            </AsciiContainer>
+            <Block88x31 images={IMAGE_ANCHORS} rowLength={5} title="check these people out!"/>
+        </div>
+
+
+        <!-- im aware of the fact that this commit was made at 5am on no sleep, the irony is not lost on me. -->
+        <AsciiContainer label='⬐ All the while they keep asking...' fontSize='0.62rem'>
+            <span style="color: var(--gray-11)">
+                <br/>
+                <AsciiContainer
+                    label='From: Requester McClient'
+                    bgColor="var(--yellow-11)"
+                    borderColor="var(--yellow-6)"
+                    fontColor="var(--yellow-1)"
+                    labelBorderColor="var(--yellow-6)"
+                    labelBorderSize="1px"
+                    fontSize='0.625rem'
+                >
+                    "Do you really need any downtime?"
+                </AsciiContainer>
+                <br/>
+                Wonder if I'm ever gonna get what the world keeps promising me.<br/>
+                If I work just a little bit harder, little bit longer, little bet less sleep, little bit less to eat.<br/>
+                Don't you feel blessed to be, working with a big celebrity like them?<br/>
+                <br/>
+                <span style="color: var(--yellow-11)">All the while they keep asking... ⬏</span>
+                <span style="color: var(--yellow-7)"> (Lyrics From... Seven Dollars - Happy Birthday Mr. Baskets)</span>
+            </span>
+        </AsciiContainer>
+
+        <AsciiContainer label='! WARNING !'>THIS SITE IS A WORK IN PROGRESS</AsciiContainer>
     </div>
 </DefaultLayout>

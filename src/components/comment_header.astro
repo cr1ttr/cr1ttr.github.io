@@ -7,7 +7,6 @@
         font-size: 1rem;
         color: var(--gray-9);
         display: flex;
-        font-weight: bold;
         flex-direction: column;
         pointer-events: none;
         user-select: none;
@@ -29,9 +28,11 @@
         <pre class="comment-header__right" aria-hidden="true"/>
     </div>
     <pre class="comment-header__bottom" aria-hidden="true"/>
-<div/>
+</div>
 
 <script>
+    import stringWidth from 'string-width';
+
     document.querySelectorAll('.comment-header').forEach((header) => {
         const center = header.querySelector('.comment-header__center');
         const content = center?.querySelector('.comment-header__content');
@@ -43,7 +44,7 @@
         if (content && top && bottom && left && right) {
             const text = content.textContent.trim().toUpperCase();
             const barEdge = '#'.repeat(4);
-            const barFill = '#'.repeat(`${barEdge} ${text} ${barEdge}`.length);
+            const barFill = '#'.repeat(stringWidth(`${barEdge} ${text} ${barEdge}`));
             content.textContent = text;
             top.textContent = barFill;
             bottom.textContent = barFill;

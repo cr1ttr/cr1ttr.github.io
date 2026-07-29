@@ -11,7 +11,34 @@
 
     .status-line__sub-container {
         height: 1.5rem;
-        background-color: var(--gray-2);
+        background: radial-gradient(
+            circle,
+            var(--gray-3) 0%, var(--gray-3) 22%,
+            #C9C7C3 22%, #C9C7C3 30%,
+            #DDBFC5 30%, #DDBFC5 37%,
+            #A9C4D1 37%, #A9C4D1 44%,
+            #6E5A48 44%, #6E5A48 51%,
+            #3A3A3A 51%, #3A3A3A 58%,
+            #B3524A 58%, #B3524A 65%,
+            #C08A4E 65%, #C08A4E 72%,
+            #C4B54E 72%, #C4B54E 79%,
+            #4E8065 79%, #4E8065 86%,
+            #4A5F8C 86%, #4A5F8C 93%,
+            #6B4E7A 93%, #6B4E7A 100%
+        );
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 1em;
+    }
+
+    a {
+        color: var(--gray-11);
+        text-decoration: none;
+    }
+
+    a:hover {
+        color: var(--yellow-11);
     }
 
     .status-line__main-container {
@@ -27,7 +54,8 @@
         background-color: var(--yellow-11);
         color: var(--yellow-4);
         padding: 0.1rem 0.75rem;
-        font-weight: 800;
+        display: flex;
+        align-items: center;
         height: 100%;
     }
 
@@ -85,7 +113,7 @@
         background-color: var(--yellow-11);
         padding: 0 0.5rem;
         color: var(--yellow-4);
-        font-weight: bold;
+        /*font-weight: bold;*/
         height: 100%;
     }
 
@@ -116,7 +144,11 @@
         <div class="status-line__mode-flair status-line__mode-flair--reversed"></div>
         <div class="status-line__cursor-pos">?:?</div>
     </div>
-    <div class="status-line__sub-container"/>
+    <div class="status-line__sub-container">
+        <span><a href="https://webring.queercoded.dev/prev?source=cr1ttr.github.io">←</a></span>
+        <span><a href="https://webring.queercoded.dev/">[QUEER-CODED WEBRING]</a></span>
+        <span><a href="https://webring.queercoded.dev/next?source=cr1ttr.github.io">→</a></span>
+    </div>
 </div>
 
 <!-- have a working nvim command system -->

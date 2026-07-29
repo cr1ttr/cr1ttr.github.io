@@ -7,9 +7,10 @@ import chunks from "../utils/chunks";
 interface Props {
   images: ImageAnchor[];
   rowLength: number;
+  title?: string;
 }
 
-const { images = [], rowLength = 4 } = Astro.props;
+const { images = [], rowLength = 4, title } = Astro.props;
 
 ---
 
@@ -29,7 +30,7 @@ const { images = [], rowLength = 4 } = Astro.props;
     }
 </style>
 
-<AsciiContainer>
+<AsciiContainer borderStyle="dashed" label={title}>
     <div class="block">
         { chunks(images, rowLength).map(arr => (
           <div class="block-row">
@@ -38,4 +39,5 @@ const { images = [], rowLength = 4 } = Astro.props;
               ))}
           </div>
         ))}
+    </div>
 </AsciiContainer>

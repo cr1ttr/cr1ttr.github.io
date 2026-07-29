@@ -1,34 +1,81 @@
 ---
 interface Props {
   label?: string;
+  borderStyle?: string;
+  flexAlign?: string;
+  flexJustify?: string;
+  labelBgColor?: string;
+  bgColor?: string;
+  fontSize?: string;
+  borderColor?: string;
+  fontColor?: string;
+  labelBorderSize?: string;
+  labelBorderColor?: string;
+  labelColor?: string;
 }
 
-const { label } = Astro.props;
----
+const {
+  label,
+  borderStyle = 'solid',
+  flexJustify = 'initial',
+  flexAlign = 'initial',
+  labelBgColor = 'var(--color-background)',
+  bgColor = 'initial',
+  fontSize = '0.75rem',
+  borderColor = 'var(--gray-9)',
+  fontColor = 'inherit',
+  labelBorderSize = '0px',
+  labelBorderColor = 'transparent',
+  labelColor = 'var(--yellow-11)'
 
-<style>
+} = Astro.props;
+---
+<style define:vars={{
+  borderStyle, flexAlign, flexJustify,
+  labelBgColor, bgColor, fontSize,
+  borderColor, fontColor, labelColor,
+  labelBorderSize, labelBorderColor
+}}>
   .ascii-box {
     position: relative;
-    border: 1px solid var(--gray-9);
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    border-width: 1px;
+    border-color: var(--borderColor);
+    border-style: var(--borderStyle);
+    background-color: var(--bgColor);
     border-radius: 6px;
-    font-size: 0.75rem;
-    padding: 1rem;
+    color: var(--fontColor);
+    font-size: var(--fontSize);
+    padding: 1.5rem 1rem 1rem 1rem;
+    align-self: var(--flexAlign);
+    justify-content: var(--flexJustify);
   }
   .ascii-box__label {
-    position: absolute;
-    top: -0.6em;
-    left: 0.6rem;
-    background: var(--color-background); /* match your page background */
-    color: var(--yellow-11);
-    padding: 0 0.4rem;
-    font-size: 0.75rem;
+    position: relative;
+    top: -2.2rem;
+    left: -0.9rem;
+    margin-bottom: -2.2rem;
+    align-self: flex-start;
+    width: fit-content;
+    margin-left: 0.3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--labelBgColor);
+    color: var(--labelColor);
+    border-color: var(--labelBorderColor);
+    border-width: var(--labelBorderSize);
+    border-style: solid;
+    padding: 0.25rem 0.5rem;
+    font-size: var(--fontSize);
+    border-radius: 8px;
   }
-  .ascii-box__no-label {
-      display: none;
+  .ascii-box--no-label {
+    padding-top: 1rem;
   }
 </style>
-
-
 <div class:list={['ascii-box', { 'ascii-box--no-label': !label }]}>
     {label && <span class="ascii-box__label">{label}</span>}
     <slot/>
