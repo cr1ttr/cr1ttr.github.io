@@ -64,6 +64,20 @@ import CommentHeader from "../components/comment_header.astro";
         filter: none;
     }
 
+    #donate-link {
+        color: var(--yellow-11);
+        font-weight: bold;
+        text-decoration: none;
+        border: 1px solid var(--yellow-11);
+        padding: 0.5em;
+
+        &:hover {
+            background-color: var(--yellow-4);
+            box-shadow: 0 0 10px var(--yellow-11);
+        }
+
+    }
+
     #currently-playing {
         width: 200px;
         height: auto;
@@ -100,7 +114,21 @@ import CommentHeader from "../components/comment_header.astro";
     openGraphImage="/favicon.png"
 >
     <div class="index-containers">
+        <AsciiContainer>
+            <p style="text-align: center">
+                Like what I do? Please consider <span style="color: var(--yellow-11)">donating</span>!<br/><br/>
 
+                <span style="color: var(--yellow-8)">
+                    - All donations go directly towards supporting me.<br/>
+                    - All donors will be listed on the site permanently, as a thank you.<br/>
+                        - Please leave a preferred name in the recipient message.<br/><br/>
+                </span>
+
+                <a href="https://www.paypal.com/donate/?business=P5EV35DU5GVZN&no_recurring=0&currency_code=USD" id="donate-link">
+                    &lt; DONATE &gt;
+                </a>
+            </p>
+        </AsciiContainer>
 
         <div class="hero">
             <AsciiBlock size="3px" color="var(--yellow-11)">{icon}</AsciiBlock>
@@ -165,7 +193,6 @@ import CommentHeader from "../components/comment_header.astro";
                 <span style="color: var(--yellow-7)"> (Lyrics From... Seven Dollars - Happy Birthday Mr. Baskets)</span>
             </span>
         </AsciiContainer>
-
         <AsciiContainer label='! WARNING !'>THIS SITE IS A WORK IN PROGRESS</AsciiContainer>
     </div>
 </DefaultLayout>
