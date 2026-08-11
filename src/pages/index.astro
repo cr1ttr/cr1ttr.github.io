@@ -21,6 +21,7 @@ import {
   CURRENTLY_PLAYING_NAME
 } from "../data/index_supplements";
 import CommentHeader from "../components/comment_header.astro";
+import DonateButton from "../components/donate_button.astro";
 
 ---
 
@@ -64,19 +65,6 @@ import CommentHeader from "../components/comment_header.astro";
         filter: none;
     }
 
-    #donate-link {
-        color: var(--yellow-11);
-        font-weight: bold;
-        text-decoration: none;
-        border: 1px solid var(--yellow-11);
-        padding: 0.5em;
-
-        &:hover {
-            background-color: var(--yellow-4);
-            box-shadow: 0 0 10px var(--yellow-11);
-        }
-
-    }
 
     #currently-playing {
         width: 200px;
@@ -105,6 +93,7 @@ import CommentHeader from "../components/comment_header.astro";
         width: 100px;
         height: auto;
     }
+
 </style>
 
 <DefaultLayout
@@ -124,9 +113,7 @@ import CommentHeader from "../components/comment_header.astro";
                         - Please leave a preferred name in the recipient message.<br/><br/>
                 </span>
 
-                <a href="https://www.paypal.com/donate/?business=P5EV35DU5GVZN&no_recurring=0&currency_code=USD" id="donate-link">
-                    &lt; DONATE &gt;
-                </a>
+                <DonateButton/>
             </p>
         </AsciiContainer>
 

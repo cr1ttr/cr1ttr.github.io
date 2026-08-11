@@ -156,10 +156,12 @@
         height: 100%;
     }
 
+
     @media (max-width: 575px) {
         .status-line__file {
             display: none;
         }
+
     }
 
     @media (max-width: 350px) {
@@ -168,6 +170,18 @@
         .status-line__mode-flair--reversed,
         .status-line__utf-8 {
             display: none;
+        }
+    }
+
+    @media (max-width: 800px) {
+        .sub-container__spacer--left, .sub-container__spacer--right {
+            background: var(--gray-1);
+            
+        }
+
+        .qc-webring-thing {
+            border-left: none;
+            border-right: none;
         }
     }
 </style>
