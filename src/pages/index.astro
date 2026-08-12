@@ -50,6 +50,7 @@ const [quote] = await response.json();
 
     .badges-section {
         display: flex;
+        flex-direction: column;
         gap: 1em;
     }
 
@@ -105,10 +106,6 @@ const [quote] = await response.json();
     @media (max-width: 800px) {
         #donation-block {
             display: none;
-        }
-
-        .badges-section {
-            flex-direction: column;
         }
 
         .hero {
