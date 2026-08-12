@@ -1,0 +1,89 @@
+
+
+<style>
+    #canvas {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        z-index: -9999;
+        display: block;
+    }
+</style>
+
+<canvas id="canvas"></canvas>
+
+<script>
+import { globalRegistry } from "astro:schema";
+
+    const canvas = document.querySelector("#canvas") as HTMLCanvasElement;
+    const ctx = canvas.getContext("2d");
+
+    function resize() {
+        if (canvas && canvas.parentElement) {
+            canvas.width = canvas.parentElement?.clientWidth;
+            canvas.height = canvas.parentElement?.clientHeight;
+        }
+    }
+
+    window.addEventListener("resize", resize);
+    resize();
+
+    const alpha = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const nums = "0123456789";
+    const symbols = "`~!@#$%^&*()-+[{]}\\|;:'\",<.>/?";
+
+    const possible_chars = alpha + nums + symbols;
+    
+    let glyph_metrics;
+    let glyph_width: number;
+    let glyph_height: number;
+    let columns: number;
+    let rows: number;
+    let tails: Array<{x: number, y: number}> = [];
+    let col = getComputedStyle(document.documentElement).getPropertyValue("--yellow-11");
+    
+    if (ctx) {
+        glyph_metrics = ctx.measureText("M");
+        glyph_width = glyph_metrics.width;
+        glyph_height = glyph_metrics.emHeightAscent;
+        columns = canvas.width / glyph_width; 
+        rows = canvas.height / glyph_height;
+     
+        for (let i = 0; i < columns; i++) {
+            tails.push({x: i, y: Math.floor(Math.random() * (0 - -100 + 1)) + -100})
+        }
+    }
+
+
+    
+    function tick() {
+        if (ctx && tails) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            ctx.font = "Pixel Code";
+            ctx.fillStyle = col;
+            
+            const draw_at = function (x: number, y: number) {
+                ctx.fillText(possible_chars[Math.floor(Math.random() * possible_chars.length)], x * glyph_width, y * glyph_height);
+            } 
+    
+            for (let i = 0; i < tails.length; i++) {
+                if (tails[i].y < rows) {
+                    tails[i].y += 1; 
+                } else {
+                    tails[i].y = -1;
+                }
+
+                draw_at(tails[i].x, tails[i].y);
+            }
+            
+        }
+    }
+
+    setInterval(tick, 1000 / 12);
+
+</script>
+
+
+
+

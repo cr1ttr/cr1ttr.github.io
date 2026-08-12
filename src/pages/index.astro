@@ -23,6 +23,7 @@ import {
 import CommentHeader from "../components/comment_header.astro";
 import DonateButton from "../components/donate_button.astro";
 import Marquee from "../components/marquee.astro";
+import Matrix from "../components/matrix.astro";
 
 const response = await fetch("http://api.quotable.io/quotes/random");
 const [quote] = await response.json();
@@ -144,6 +145,7 @@ const [quote] = await response.json();
     openGraphTitle="home"
     openGraphImage="/favicon.png"
 >
+
     <div id="qotd" style="width: 100%;">
         <Marquee>
             "{quote.author}" - {quote.content}
@@ -151,6 +153,7 @@ const [quote] = await response.json();
     </div>
 
     <div class="index-containers">
+        <Matrix/>
         <div id="donation-block">
             <AsciiContainer>
                 <p style="text-align: center">

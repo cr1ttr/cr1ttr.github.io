@@ -24,7 +24,7 @@ const {
   flexJustify = 'initial',
   flexAlign = 'initial',
   labelBgColor = 'var(--color-background)',
-  bgColor = 'initial',
+  bgColor = 'inherit',
   fontSize = '0.75rem',
   borderColor = 'var(--gray-9)',
   fontColor = 'inherit',
@@ -50,15 +50,15 @@ const {
     border-width: 1px;
     border-color: var(--borderColor);
     border-style: var(--borderStyle);
-    background-color: var(--bgColor);
+    background-color: var(--gray-1);
     border-radius: 6px;
     color: var(--fontColor);
     font-size: var(--fontSize);
     padding: 1.5rem 1rem 1rem 1rem;
     align-self: var(--flexAlign);
     justify-content: var(--flexJustify);
-    width: var(--width),
-    height: var(--height)
+    width: var(--width);
+    height: var(--height);
   }
   .ascii-box__label {
     position: relative;
