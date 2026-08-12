@@ -173,7 +173,7 @@ const [quote] = await response.json();
         <div class="hero">
             <div id="icon"><AsciiBlock size="3px" color="var(--yellow-11)">{icon}</AsciiBlock></div>
             <div class="currently-doing">
-                <AsciiContainer label='Currently Playing: '>
+                <AsciiContainer label='Current Game: '>
                     <div class="currently-playing">
                         <a href={CURRENTLY_PLAYING_REDIRECT}><img id="currently-playing" src={CURRENTLY_PLAYING_KEY_ART}></a>
                         <span>
@@ -184,7 +184,7 @@ const [quote] = await response.json();
                         </span>
                     </div>
                 </AsciiContainer>
-                <AsciiContainer label = "Currently Listening To:">
+                <AsciiContainer label = "Current Song:">
                     <div class="currently-listening">
                     <a href={CURRENTLY_LISTENING_REDIRECT} style="display: flex; justify-content: center;"><img id="currently-listening" src={CURRENTLY_LISTENING_KEY_ART}></a>
                     <span>

@@ -40,7 +40,6 @@ import { globalRegistry } from "astro:schema";
     let columns: number;
     let rows: number;
     let tails: Array<{x: number, y: number}> = [];
-    let col = getComputedStyle(document.documentElement).getPropertyValue("--yellow-7");
     
     if (ctx) {
         glyph_metrics = ctx.measureText("M");
@@ -48,18 +47,19 @@ import { globalRegistry } from "astro:schema";
         glyph_height = glyph_metrics.emHeightAscent;
         columns = canvas.width / glyph_width; 
         rows = canvas.height / glyph_height;
-     
+        
         for (let i = 0; i < columns; i++) {
             tails.push({x: i, y: Math.floor(Math.random() * (0 - -100 + 1)) + -100})
         }
     }
-
-
+    
+    
     
     function tick() {
         if (ctx && tails) {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             
+            let col = getComputedStyle(document.documentElement).getPropertyValue("--yellow-7");
             ctx.font = "Pixel Code";
             ctx.fillStyle = col;
             
