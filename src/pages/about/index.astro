@@ -4,6 +4,7 @@ import AsciiContainer from "../../components/ascii_container.astro"
 import CommentHeader from "../../components/comment_header.astro"
 import FaIcon from "../../components/fa_icon.astro"
 import '../../styles/queer_coded_font.css';
+import Marquee from "../../components/marquee.astro";
 ---
 
 <style>
@@ -41,6 +42,11 @@ import '../../styles/queer_coded_font.css';
     .qc-logo {
         font-family: "QueerCodedGlyph";
     }
+
+    @media (max-width: 800px) {
+    }
+
+
 </style>
 
 <DefaultLayout title="About">
@@ -74,5 +80,4 @@ i made this website to ramble and show the things i'm working on.</pre>
         </div>
     </AsciiContainer>
     </div>
-
 </DefaultLayout>

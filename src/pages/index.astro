@@ -22,6 +22,10 @@ import {
 } from "../data/index_supplements";
 import CommentHeader from "../components/comment_header.astro";
 import DonateButton from "../components/donate_button.astro";
+import Marquee from "../components/marquee.astro";
+
+const response = await fetch("http://api.quotable.io/quotes/random");
+const [quote] = await response.json();
 
 ---
 
@@ -140,6 +144,12 @@ import DonateButton from "../components/donate_button.astro";
     openGraphTitle="home"
     openGraphImage="/favicon.png"
 >
+    <div id="qotd" style="width: 100%;">
+        <Marquee>
+            "{quote.author}" - {quote.content}
+        </Marquee>
+    </div>
+
     <div class="index-containers">
         <div id="donation-block">
             <AsciiContainer>
@@ -194,32 +204,16 @@ import DonateButton from "../components/donate_button.astro";
             </AsciiContainer>
             <Block88x31 images={IMAGE_ANCHORS} rowLength={5} title="check these people out!"/>
         </div>
-
-
-        <!-- im aware of the fact that this commit was made at 5am on no sleep, the irony is not lost on me. -->
-        <AsciiContainer label='⬐ All the while they keep asking...' fontSize='0.62rem'>
-            <span style="color: var(--gray-11)">
-                <br/>
-                <AsciiContainer
-                    label='From: Requester McClient'
-                    bgColor="var(--yellow-11)"
-                    borderColor="var(--yellow-6)"
-                    fontColor="var(--yellow-1)"
-                    labelBorderColor="var(--yellow-6)"
-                    labelBorderSize="1px"
-                    fontSize='0.625rem'
-                >
-                    "Do you really need any downtime?"
-                </AsciiContainer>
-                <br/>
-                Wonder if I'm ever gonna get what the world keeps promising me.<br/>
-                If I work just a little bit harder, little bit longer, little bet less sleep, little bit less to eat.<br/>
-                Don't you feel blessed to be, working with a big celebrity like them?<br/>
-                <br/>
-                <span style="color: var(--yellow-11)">All the while they keep asking... ⬏</span>
-                <span style="color: var(--yellow-7)"> (Lyrics From... Seven Dollars - Happy Birthday Mr. Baskets)</span>
-            </span>
-        </AsciiContainer>
-        <AsciiContainer label='! WARNING !'>THIS SITE IS A WORK IN PROGRESS</AsciiContainer>
     </div>
 </DefaultLayout>
+
+<script>
+    const qotd = document.querySelector("#qotd");
+
+    if (qotd) {
+        const response = await fetch("https://zenquotes.io/api/random");
+        const json = await response.json();
+        console.log(json);
+        qotd.textContent = `\"${json[0].q}\" - ${json[0].a}`;
+    }
+</script>
