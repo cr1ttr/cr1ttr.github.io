@@ -206,14 +206,3 @@ const [quote] = await response.json();
         </div>
     </div>
 </DefaultLayout>
-
-<script>
-    const qotd = document.querySelector("#qotd");
-
-    if (qotd) {
-        const response = await fetch("https://zenquotes.io/api/random");
-        const json = await response.json();
-        console.log(json);
-        qotd.textContent = `\"${json[0].q}\" - ${json[0].a}`;
-    }
-</script>
