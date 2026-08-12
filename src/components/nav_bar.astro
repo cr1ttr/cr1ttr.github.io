@@ -1,5 +1,6 @@
 ---
 import type Link from "../types/link"
+import FaIcon from "./fa_icon.astro";
 
 interface Props {
   links: Link[]
@@ -172,6 +173,38 @@ function isActive(href: string): boolean {
     }
 
 
+    .navbar__menu__link-list {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .navbar__menu__link-list > li > .navbar__link {
+        width: 100%;
+        display: block;
+        text-align: center;
+    }
+
+    .navbar__menu__link-list > li {
+        list-style: none;
+        width: 100%;
+    }
+
+    .navbar__menu__link-list {
+        padding: 0;
+    }
+
+    .navbar__menu__back-button-container {
+        display: flex;
+        justify-content: end;
+        background-color: var(--gray-3);
+        text-align: right;
+        padding: 1em;
+    }
+
+    .navbar__menu-close {
+        cursor: pointer;
+        width: fit-content;
+    }
 </style>
 
 
@@ -205,7 +238,16 @@ function isActive(href: string): boolean {
     <i class="fa-solid theme-switch fa-sun"/>
     <button class="navbar__menu-button"><i class="fa-solid fa-bars"/></button>
     <div class="navbar__menu navbar__menu--inactive">
-
+        <div class="navbar__menu__back-button-container">
+            <div class="navbar__menu-close" onclick="">
+                <FaIcon icon="x"/>
+            </div>
+        </div>
+        <ul class="navbar__menu__link-list">
+            { links.map((link) => (
+                <li><a class={`navbar__link ${ isActive(link.href) ? "navbar__link--active" : "" }`} href={link.href}>{link.label}</a></li>
+            ))}
+        </ul>
     </div>
 </nav>
 
@@ -214,10 +256,12 @@ function isActive(href: string): boolean {
 
 
 <script>
+
   const form = document.querySelector(".navbar__input-form");
   const input = document.querySelector(".navbar__input-form-element") as HTMLInputElement;
   const navbarMenuButton = document.querySelector(".navbar__menu-button");
   const navbarMenu = document.querySelector(".navbar__menu");
+  const navbarMenuBackButton = document.querySelector(".navbar__menu-close");
 
   if (navbarMenu && navbarMenuButton) {
     navbarMenuButton.addEventListener("click", () => {
@@ -228,6 +272,18 @@ function isActive(href: string): boolean {
         navbarMenu.classList.remove("navbar__menu--inactive");
         navbarMenu.classList.add("navbar__menu--active");
       }
+    });
+  }
+
+  if (navbarMenu && navbarMenuBackButton) {
+    navbarMenuBackButton.addEventListener("click", () => {
+        if (navbarMenu.classList.contains("navbar__menu--active")) {
+            navbarMenu.classList.remove("navbar__menu--active");
+            navbarMenu.classList.add("navbar__menu--inactive");
+        } else {
+            navbarMenu.classList.remove("navbar__menu--inactive");
+            navbarMenu.classList.add("navbar__menu--active");
+        }
     });
   }
 

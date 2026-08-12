@@ -4,6 +4,8 @@ interface Props {
   color: string;
 }
 const { size, color } = Astro.props;
+
+import textfit from "textfit";
 ---
 
 <style define:vars={{size, color}}>
@@ -16,4 +18,4 @@ const { size, color } = Astro.props;
     }
 </style>
 
-<pre aria-hidden="true"><slot/></pre>
+<pre aria-hidden="true" id="block"><slot/></pre>

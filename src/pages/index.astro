@@ -65,6 +65,9 @@ import DonateButton from "../components/donate_button.astro";
         filter: none;
     }
 
+    .currently-listening {
+        width: 100%;
+    }
 
     #currently-playing {
         width: 200px;
@@ -94,6 +97,41 @@ import DonateButton from "../components/donate_button.astro";
         height: auto;
     }
 
+    @media (max-width: 800px) {
+        #donation-block {
+            display: none;
+        }
+
+        .badges-section {
+            flex-direction: column;
+        }
+
+        .hero {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .currently-doing {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #icon {
+            text-align: center;
+            width: 100%;
+        }
+
+        #currently-listening {
+            min-width: 100%;
+        }
+
+        /* #currently-playing, #currently-listening {
+            width: 100%;
+        } */
+
+
+
+    }
 </style>
 
 <DefaultLayout
@@ -103,22 +141,24 @@ import DonateButton from "../components/donate_button.astro";
     openGraphImage="/favicon.png"
 >
     <div class="index-containers">
-        <AsciiContainer>
-            <p style="text-align: center">
-                Like what I do? Please consider <span style="color: var(--yellow-11)">donating</span>!<br/><br/>
-
-                <span style="color: var(--yellow-8)">
-                    - All donations go directly towards supporting me.<br/>
-                    - All donors will be listed on the site permanently, as a thank you.<br/>
-                        - Please leave a preferred name in the recipient message.<br/><br/>
-                </span>
-
-                <DonateButton/>
-            </p>
-        </AsciiContainer>
+        <div id="donation-block">
+            <AsciiContainer>
+                <p style="text-align: center">
+                    Like what I do? Please consider <span style="color: var(--yellow-11)">donating</span>!<br/><br/>
+    
+                    <span style="color: var(--yellow-8)">
+                        - All donations go directly towards supporting me.<br/>
+                        - All donors will be listed on the site permanently, as a thank you.<br/>
+                            - Please leave a preferred name in the recipient message.<br/><br/>
+                    </span>
+    
+                    <DonateButton/>
+                </p>
+            </AsciiContainer>
+        </div>
 
         <div class="hero">
-            <AsciiBlock size="3px" color="var(--yellow-11)">{icon}</AsciiBlock>
+            <div id="icon"><AsciiBlock size="3px" color="var(--yellow-11)">{icon}</AsciiBlock></div>
             <div class="currently-doing">
                 <AsciiContainer label='Currently Playing: '>
                     <div class="currently-playing">
