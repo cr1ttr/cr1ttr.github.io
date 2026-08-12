@@ -103,7 +103,7 @@
 
 @supports (color: color(display-p3 1 1 1)) {
   @media (color-gamut: p3) {
-    :root, .light, .light-theme {
+    .light, .light-theme {
       --gray-1: oklch(99.1% 0.0015 277.7);
       --gray-2: oklch(98.2% 0.003 277.7);
       --gray-3: oklch(95.6% 0.0045 277.7);
@@ -142,7 +142,7 @@
   --color-background: #F5F0E8;
 }
 
-:root, .light, .light-theme {
+/* :root, .light, .light-theme {
   --blue-1: #b1b1b2;
   --blue-2: #a6a8ae;
   --blue-3: #989ba8;
@@ -210,4 +210,4 @@
       --blue-track: oklch(18.8% 0.1913 273.1);
     }
   }
-}
+} */
