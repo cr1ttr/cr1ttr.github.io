@@ -11,14 +11,14 @@ html {
 body, pre {
     font-family: "Pixel Code";
 }
-
+/* 
 *, *::before, *::after {
   transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
 .no-transition *, .no-transition *::before, .no-transition *::after {
     transition: none !important;
-}
+} */
 
 hr {
     width: 100%;
