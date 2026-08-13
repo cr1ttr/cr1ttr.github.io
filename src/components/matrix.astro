@@ -14,8 +14,6 @@
 <canvas id="canvas"></canvas>
 
 <script>
-import { globalRegistry } from "astro:schema";
-
     const canvas = document.querySelector("#canvas") as HTMLCanvasElement;
     const ctx = canvas.getContext("2d");
 
@@ -61,15 +59,24 @@ import { globalRegistry } from "astro:schema";
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             
             let col = getComputedStyle(document.documentElement).getPropertyValue("--yellow-7");
+            let tail_col = getComputedStyle(document.documentElement).getPropertyValue("--gray-11");
             ctx.font = "Pixel Code";
-            ctx.fillStyle = col;
             
             const draw_at = function (x: number, y: number) {
+                
+                ctx.fillStyle = tail_col;
                 ctx.fillText(possible_chars[Math.floor(Math.random() * possible_chars.length)], x * glyph_width, y * glyph_height);
-            } 
+                
+                for (let i = 0; i < 30; i++) {
+                    ctx.fillStyle = col;
+                    ctx.fillText(possible_chars[Math.floor(Math.random() * possible_chars.length)], x * glyph_width, (y - i) * glyph_height);
+                }
+            }
+            
+            
     
             for (let i = 0; i < tails.length; i++) {
-                if (tails[i].y < rows) {
+                if (tails[i].y < rows + 30) {
                     tails[i].y += 1; 
                 } else {
                     tails[i].y = -1;
