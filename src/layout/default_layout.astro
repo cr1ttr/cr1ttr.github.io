@@ -7,7 +7,7 @@ import CommentHeader from "../components/comment_header.astro";
 import StatusLine from "../components/status_line.astro";
 import type { Props as BaseProps } from "./base_layout.astro"
 import NAVBAR_LINKS from "../data/navbar_links";
-
+import Matrix from "../components/matrix.astro";
 interface Props extends BaseProps {}
 
 const { ...props } = Astro.props;
@@ -31,6 +31,9 @@ const { ...props } = Astro.props;
         <CrtOverlay/>
         <NavBar slot="header" links={NAVBAR_LINKS}/>
     </div>
-    <div slot="main" class="main-content"><slot/></div>
+    <div slot="main" class="main-content">
+        <Matrix/>
+        <slot/>
+    </div>
     <StatusLine slot="footer"/>
 </BaseLayout>

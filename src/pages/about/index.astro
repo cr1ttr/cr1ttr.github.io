@@ -26,50 +26,68 @@ import Marquee from "../../components/marquee.astro";
         display: flex;
         flex-direction: column;
         margin: 3em;
+        gap: 1em;
     }
 
     .socials-container {
         display: flex;
         flex-direction: row;
-        width: 50%;
-        margin: 0 auto;
+        justify-content: center;
+        align-items: center;
+
     }
+
+
 
     .qc-logo {
         font-family: "QueerCodedGlyph";
     }
 
+    .containers pre {
+        white-space: pre-wrap;
+    }
+
+    .content {
+        width: 50%;
+    }
+
+    @media (max-width: 800px) {
+        .content {
+            width: 100%;
+        }
+    }
+
 </style>
 
 <DefaultLayout title="About">
-    <CommentHeader>ABOUT</CommentHeader>
-
-    <div class="containers">
+    <div class="content">        
+        <div class="containers">
         <AsciiContainer label="OVERVIEW">
 <pre>hey there, welcome to my website!
 i'm <span style="color: var(--yellow-11);">isabelle</span> a.k.a <span style="color: var(--yellow-11);">'cr1ttr'</span> --- i'm a software, tool, and game developer.
 i made this website to ramble and show the things i'm working on.</pre>
-    </AsciiContainer>
-    <AsciiContainer label="PERSONAL">
+        </AsciiContainer>
+        <AsciiContainer label="PERSONAL">
 <pre><span style="color: var(--yellow-8);">nicknames:</span> isabelle, izzy, belle, 'cr1ttr'
 <span style="color: var(--yellow-8);">      age:</span> 21y/o
 <span style="color: var(--yellow-8);"> pronouns:</span> (she/they/it)
 <span style="color: var(--yellow-8);">   gender:</span> demigirl
 <span style="color: var(--yellow-8);">sexuality:</span> gyneromantic</pre>
-    </AsciiContainer>
-    <AsciiContainer label="SOFTWARE">
+        </AsciiContainer>
+        <AsciiContainer label="SOFTWARE">
 <pre><span style="color: var(--yellow-8);"> favorites:</span> rust, godot
 <span style="color: var(--yellow-8);">    others:</span> sdl2, c, c++, c#, lua, html/css/js, pico8
 <span style="color: var(--yellow-8);">interested:</span> go, haskell, ocaml</pre>
-    </AsciiContainer>
-    <AsciiContainer label="SOCIALS" >
-        <div class="socials-container">
-            <a href="https://www.linkedin.com/in/isabelle-hall-208707425/"><FaIcon iconType="brands" icon="linkedin"/></a>
-            <a href="https://github.com/cr1ttr"><FaIcon iconType="brands" icon="github"/></a>
-            <a href="https://bsky.app/profile/cr1ttr.bsky.social"><FaIcon iconType="brands" icon="bluesky"/></a>
-            <a href="https://discord.com/users/488889057603092480"><FaIcon iconType="brands" icon="discord"/></a>
-            <a href="https://discord.com/invite/FsHRDs9HaT"><i class="icon-queer-coded"/></a>
+        </AsciiContainer>
+        <AsciiContainer label="SOCIALS" >
+            <div class="socials-container">
+                <a href="https://www.linkedin.com/in/isabelle-hall-208707425/"><FaIcon iconType="brands" icon="linkedin"/></a>
+                <a href="https://github.com/cr1ttr"><FaIcon iconType="brands" icon="github"/></a>
+                <a href="https://bsky.app/profile/cr1ttr.bsky.social"><FaIcon iconType="brands" icon="bluesky"/></a>
+                <a href="https://discord.com/users/488889057603092480"><FaIcon iconType="brands" icon="discord"/></a>
+                <a href="https://discord.com/invite/FsHRDs9HaT"><i class="icon-queer-coded"/></a>
+            </div>
+        </AsciiContainer>
         </div>
-    </AsciiContainer>
     </div>
 </DefaultLayout>
