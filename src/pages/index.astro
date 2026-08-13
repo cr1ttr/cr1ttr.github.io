@@ -6,8 +6,6 @@ import flavor from '/flavor.txt?raw';
 import AsciiContainer from "../components/ascii_container.astro";
 import Block88x31 from "../components/88x31_block.astro";
 import IMAGE_ANCHORS from "../data/88x31_data"
-import FaIcon from "../components/fa_icon.astro";
-
 
 import {
   CURRENTLY_LISTENING_ARTIST,
@@ -20,10 +18,11 @@ import {
   CURRENTLY_PLAYING_REDIRECT,
   CURRENTLY_PLAYING_NAME
 } from "../data/index_supplements";
-import CommentHeader from "../components/comment_header.astro";
+
 import DonateButton from "../components/donate_button.astro";
 import Marquee from "../components/marquee.astro";
 import Matrix from "../components/matrix.astro";
+import Pill from "../components/pill.astro";
 
 const response = await fetch("http://api.quotable.io/quotes/random");
 const [quote] = await response.json();
@@ -161,7 +160,6 @@ const [quote] = await response.json();
                         - All donors will be listed on the site permanently, as a thank you.<br/>
                             - Please leave a preferred name in the recipient message.<br/><br/>
                     </span>
-    
                     <DonateButton/>
                 </p>
             </AsciiContainer>

@@ -1,8 +1,88 @@
 ---
-import PostIndex from "../../layout/post_index.astro";
+import AsciiContainer from "../../components/ascii_container.astro";
+import Pill from "../../components/pill.astro";
+import DefaultLayout from "../../layout/default_layout.astro";
 ---
 
-<PostIndex
-    title="Projects"
-    base="projects"
-/>
+<style>
+
+    .image-container {
+        overflow: hidden;
+        width: 500px;
+        margin: 1rem 0;
+        border: 1px solid var(--yellow-8);
+        border-radius: 4px;
+    }
+
+    .project-image {
+        float: left;
+        height: auto;
+        filter: grayscale(100%);
+        transition: transform 0.3s ease;
+    }
+
+    .project-image:hover {
+        filter: none;
+        transform: scale(150%) rotate(5deg);
+    }
+
+    .project-pill-container {
+        display: flex; 
+        flex-direction: row;
+        gap: 1em;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+
+    .project-list-entry {
+        display: flex;
+        flex-direction: row;
+        gap: 1em;
+    }
+
+    .main-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+</style>
+
+<DefaultLayout title="Projects">
+    <AsciiContainer width="50%" bgColor="var(--gray-3)">
+        <div class="project-list">
+            <AsciiContainer 
+                label="Personal Site" 
+                bgColor="var(--yellow-2)" 
+                labelBgColor="var(--yellow-2)" 
+                borderColor="var(--yellow-8)"
+                labelBorderSize="1px"
+                labelBorderColor="var(--yellow-8)"
+            >
+                <div class="project-list-entry">
+                    <div class="image-container">
+                        <a href="/"><img class="project-image" src="website-sc.png"></a>
+                    </div>
+                    <div class="main-content">
+                        <div class="project-description">
+                            A website that contains my projects and blog posts! You're looking at it!
+                        </div>
+                        <hr/>
+                        <div class="project-pill-container">
+                            <Pill>HTML</Pill> 
+                            <Pill>CSS</Pill> 
+                            <Pill>JS</Pill> 
+                            <Pill>TS</Pill> 
+                            <Pill>JSX</Pill> 
+                            <Pill>MDX</Pill>
+                            <Pill>MDX</Pill>
+                            <Pill>MDX</Pill>
+                            <Pill>MDX</Pill>
+                            <Pill>MDX</Pill>
+                            <Pill>Astro</Pill>
+                        </div>
+                    </div>
+                </div>
+            </AsciiContainer>
+        </div>
+    </AsciiContainer>
+</DefaultLayout>

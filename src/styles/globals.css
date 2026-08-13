@@ -25,7 +25,7 @@ hr {
     border-width: 1px;
     border-style: dashed;
     margin: 1em 0;
-    border-color: var(--gray-3);
+    border-color: var(--yellow-7);
 }
 
 /*@keyframes glow {
