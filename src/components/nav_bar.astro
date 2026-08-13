@@ -205,12 +205,22 @@ function isActive(href: string): boolean {
         cursor: pointer;
         width: fit-content;
     }
+
+    #ps1_path::before {
+        content: ' '
+    }
+
+    @media (max-width: 800px) {
+        #ps1_path {
+            display: none;
+        }
+    }
 </style>
 
 
 <nav class="navbar">
     <!-- term-styled ps1 -->
-    <p>[<span style="color: var(--yellow-11)">cr1ttr</span><span style="color: var(--gray-7)">@</span><span style="color: var(--yellow-11)">github.io</span> <span style="color: var(--gray-7)">~{Astro.url.pathname}</span>]:</p>
+    <p>[<span style="color: var(--yellow-11)">cr1ttr</span><span style="color: var(--gray-7)">@</span><span style="color: var(--yellow-11)">github.io</span><span id="ps1_path" style="color: var(--gray-7)">~{Astro.url.pathname}</span>]:</p>
 
 
 
